@@ -12,7 +12,7 @@ You can clone this library using :
 git clone https://github.com/imamabdulazis/Flutter-Clean-Architectur-Bloc-RxDart-Dio.git
 ```
 NOTE : 
-This project is using flutter version ```1.22.3``` and with channel ```stable``` 
+This project is using flutter version ```1.22.3``` and channel ```stable``` 
 > ⚠️ If you are get any problem to this project please feel free to create issue
 
 ### Library Requirement
