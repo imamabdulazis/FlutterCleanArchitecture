@@ -1,5 +1,5 @@
 # Clean Architecture Flutter Project implementation by Robert C. Martin (Uncle Bob)
-This Project is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component.
+This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component.
 First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
 
 ## Getting Started.
