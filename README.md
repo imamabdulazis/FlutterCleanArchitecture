@@ -16,3 +16,8 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 > ⚠️ If you are get any problem to this project please feel free to create issue
 
 ### Library Requirement
+
+| Method                                                            | Return Type         |  iOS | Android | Web |
+| ----------------------------------------------------------------- | ------------------- | :--: | :-----: | :-: |
+|                                    |   |  ❌   |   ✅     | | ❌ |
+
