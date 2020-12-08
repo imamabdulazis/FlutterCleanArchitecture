@@ -17,7 +17,7 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 
 ### Library Requirement
 
-| Library                                                           | Return Type         |  iOS  | Android | Web | Desktop |
-| ----------------------------------------------------------------- | ------------------- | :--:  | :-----: | :-: |:-:      |
-|                                                                   |                     |  ❌   |   ✅     | | ❌ |        |
+| Library                                                           | Install              |  iOS   | Android | Web | Desktop |
+| ----------------------------------------------------------------- | -------------------  | :--:   | :-----: | :-: |:-:      |
+|                                                                   |                      |  ❌     |   ✅    | | ❌ |        |
 
