@@ -1,18 +1,14 @@
 import 'package:clean_architect/features/data/datasources/binding/binding_datasource.dart';
+import 'package:clean_architect/features/data/datasources/binding/cache/cache_local.dart';
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
 import 'package:clean_architect/features/domain/entities/sign_entity.dart';
 import 'package:clean_architect/features/domain/entities/user_entity.dart';
-import 'package:dio/dio.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_sign_in/google_sign_in.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class BindingApi implements BindingDataSource {
-  final Dio _dio;
-  final String _urlPrefix = "/api/v1/";
-  final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
+class CacheRemote implements BindingDataSource {
+  final SharedPreferences pref;
 
-  BindingApi(this._dio, this._auth, this._googleSignIn);
+  CacheRemote(this.pref);
 
   @override
   Stream<bool> cacheAccessToken(String token) {
@@ -21,11 +17,13 @@ class BindingApi implements BindingDataSource {
 
   @override
   Stream<String> getAccessToken() {
+    // return Stream.value(_cacheStorage.get(StorageKeys.accessToken));
     throw UnimplementedError();
   }
 
   @override
   Stream<bool> isAlreadyBinding() {
+    // return prefs.isAccessTOkenExists();
     throw UnimplementedError();
   }
 
@@ -40,4 +38,5 @@ class BindingApi implements BindingDataSource {
     // TODO: implement signWithEmail
     throw UnimplementedError();
   }
+
 }

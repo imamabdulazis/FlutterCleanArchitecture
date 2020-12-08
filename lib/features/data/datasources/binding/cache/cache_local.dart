@@ -8,7 +8,7 @@ class StorageKeys {
   static final String midtrans = "MIDTRANS";
 }
 
-class SharePreferenceManager {
+class CacheLocal {
   static SharedPreferences _prefs;
 
   static Future<dynamic> _getInstance() async =>

@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:clean_architect/features/data/datasources/binding/cache/cache_storage.dart';
+import 'package:clean_architect/features/data/datasources/binding/cache/cache_local.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 

@@ -13,18 +13,3 @@ class SignEmailEntity extends Equatable {
   @override
   List<Object> get props => [accessToken, refreshToken];
 }
-
-class SignSocialEntity extends Equatable {
-  final String token;
-  final String email;
-  final String username;
-
-  SignSocialEntity({
-    @required this.token,
-    @required this.email,
-    @required this.username,
-  });
-
-  @override
-  List<Object> get props => [token, email, username];
-}

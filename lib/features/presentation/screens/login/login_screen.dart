@@ -10,6 +10,9 @@ class LoginScreen extends HookWidget {
       print("Login Screen");
       return;
     }, const []);
+
+    void onLogin() {}
+
     return Scaffold(
       body: Container(
         color: Colors.red,

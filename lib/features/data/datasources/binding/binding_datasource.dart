@@ -1,12 +1,11 @@
+import 'package:clean_architect/features/data/models/request/sign_body.dart';
+import 'package:clean_architect/features/domain/entities/sign_entity.dart';
+import 'package:clean_architect/features/domain/entities/user_entity.dart';
 
 abstract class BindingDataSource {
-  //implementation request api
-  // Future<SignEntity> createBinding(authModelRequest);
+  Future<SignEmailEntity> signWithEmail(SignEmailBody signEmailBody);
 
-  //implementation social auth
-  Future<String> signWithSocial();
-
-  Future<bool> signOutSocial();
+  Future<UserEntity> getAccount(int userId);
 
   Stream<bool> isAlreadyBinding();
 
