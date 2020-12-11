@@ -46,6 +46,7 @@ class UserRepositoryImpl implements UserRepository {
     yield Right(model);
   }
 
+  //TODO get account
   @override
   Stream<Either<Failure, UserEntity>> getAccount(int userId) async* {
     if (await networkInfo.isConnected) {

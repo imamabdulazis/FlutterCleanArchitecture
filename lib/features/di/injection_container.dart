@@ -2,6 +2,7 @@ import 'package:clean_architect/core/network/network_info.dart';
 import 'package:clean_architect/core/utils/input_converter.dart';
 import 'package:clean_architect/features/data/datasources/binding/cache/cache_local.dart';
 import 'package:clean_architect/features/data/datasources/binding/cache/cache_remote.dart';
+import 'package:clean_architect/features/data/datasources/binding/network/binding_api.dart';
 import 'package:clean_architect/features/data/datasources/datasource_factory.dart';
 import 'package:clean_architect/features/data/repositories/user_repository_impl.dart';
 import 'package:clean_architect/features/domain/repositories/user_repository.dart';
@@ -20,7 +21,7 @@ Future<void> init() async {
   //service
 
   ///  bloc
-  sl.registerFactory(() => BindingBloc());
+  sl.registerFactory(() => BindingBloc(sl()));
   sl.registerFactory(() => InitialBloc(sl()));
   // sl.registerFactory(() => SignBloc());
 

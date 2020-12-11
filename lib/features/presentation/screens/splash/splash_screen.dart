@@ -6,6 +6,7 @@ import 'package:clean_architect/features/presentation/screens/login/login_screen
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class SplashScreen extends StatelessWidget {
   static const String route = 'SplashScreen';
 
@@ -13,7 +14,7 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //NOTE : show splash screen
+    // NOTE : show splash screen
     print('build splash screen');
     bloc.bindStatusStream.listen((event) {
       print('listen');
@@ -24,8 +25,6 @@ class SplashScreen extends StatelessWidget {
           Navigator.pushReplacementNamed(context, HomeScreen.route);
         }
       }
-    }).onError(() {
-      print("Error waiting splash screen");
     });
     return Scaffold(
       body: Center(
@@ -34,3 +33,4 @@ class SplashScreen extends StatelessWidget {
     );
   }
 }
+

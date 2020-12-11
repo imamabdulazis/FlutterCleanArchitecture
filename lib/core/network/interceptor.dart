@@ -7,7 +7,7 @@ import 'package:dio/dio.dart';
 //don't format doc
 class LoggingInterceptors extends InterceptorsWrapper {
   final Dio _dio;
-  SharePreferenceManager _cacheStorage =SharePreferenceManager();
+  CacheLocal _cacheStorage =CacheLocal();
 
   var logger = Logger(
     printer: PrettyPrinter(methodCount: 0)
@@ -17,7 +17,7 @@ class LoggingInterceptors extends InterceptorsWrapper {
 
   @override
   Future onRequest(RequestOptions options) async {
-    final storageToken = await SharePreferenceManager.get(StorageKeys.accessToken);
+    final storageToken = await CacheLocal.get(StorageKeys.accessToken);
 
     logger.d(
         "--> ${options.method != null
@@ -78,7 +78,7 @@ class LoggingInterceptors extends InterceptorsWrapper {
     logger.e("<-- End error");
 
     int responseCode = dioError.response.statusCode;
-    final storageToken = await SharePreferenceManager.get(StorageKeys.accessToken);
+    final storageToken = await CacheLocal.get(StorageKeys.accessToken);
 
     if (storageToken != null && responseCode == 401 && _cacheStorage != null) {
       _dio.interceptors.requestLock.lock();
