@@ -1,5 +1,6 @@
 enum Environment { DEV, STAG, PROD }
 
+//credit : https://medium.com/meeve/build-variants-in-flutter-for-multiple-backend-environments-7e139128949b
 //NOTE : build multiple application
 class Constants {
   static Map<String, dynamic> _config;
