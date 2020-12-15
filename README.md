@@ -23,6 +23,6 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 
 
 
-##CREDIT
+## CREDIT
 
 [Filled stack](https://www.filledstacks.com)
