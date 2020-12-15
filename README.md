@@ -27,5 +27,5 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 This architecture is made with love :blush: and more things using great tutorials by great people, please visit this project credit,
 thank you.
 
-[Filled stack](https://www.filledstacks.com)
+[Filled stack](https://www.filledstacks.com)<br/>
 [Reso Coder](https://resocoder.com)
