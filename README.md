@@ -26,3 +26,4 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 ## CREDIT
 
 [Filled stack](https://www.filledstacks.com)
+[Reso Coder](https://resocoder.com)
