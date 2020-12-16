@@ -1,3 +1,4 @@
+import 'package:clean_architect/core/network/http_client.dart';
 import 'package:clean_architect/features/data/datasources/binding/binding_datasource.dart';
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
 import 'package:clean_architect/features/domain/entities/sign_entity.dart';
@@ -6,32 +7,32 @@ import 'package:dio/dio.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-class BindingApi implements BindingDataSource {
-  final Dio _dio;
-  final String _urlPrefix = "/api/v1/";
-  final FirebaseAuth _auth;
-  final GoogleSignIn _googleSignIn;
+class BindingRemote implements BindingDataSource {
+  final HttpClient httpClient;
 
-  BindingApi(this._dio, this._auth, this._googleSignIn);
+  BindingRemote(this.httpClient);
 
   @override
   Stream<bool> cacheAccessToken(String token) {
+    // TODO: implement cacheAccessToken
     throw UnimplementedError();
   }
 
   @override
   Stream<String> getAccessToken() {
-    throw UnimplementedError();
-  }
-
-  @override
-  Stream<bool> isAlreadyBinding() {
+    // TODO: implement getAccessToken
     throw UnimplementedError();
   }
 
   @override
   Future<UserEntity> getAccount(int userId) {
     // TODO: implement getAccount
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<bool> isAlreadyBinding() {
+    // TODO: implement isAlreadyBinding
     throw UnimplementedError();
   }
 

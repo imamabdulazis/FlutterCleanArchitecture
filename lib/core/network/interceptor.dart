@@ -1,28 +1,24 @@
 import 'dart:io';
 
-import 'package:clean_architect/features/data/datasources/binding/cache/cache_local.dart';
+import 'package:clean_architect/features/data/datasources/binding/cache/binding_cache.dart';
 import 'package:logger/logger.dart';
 import 'package:dio/dio.dart';
 
 //don't format doc
 class LoggingInterceptors extends InterceptorsWrapper {
   final Dio _dio;
-  CacheLocal _cacheStorage =CacheLocal();
+  BindingCache bindingCache;
 
-  var logger = Logger(
-    printer: PrettyPrinter(methodCount: 0)
-  );
+  var logger = Logger(printer: PrettyPrinter(methodCount: 0));
 
   LoggingInterceptors(this._dio);
 
   @override
   Future onRequest(RequestOptions options) async {
-    final storageToken = await CacheLocal.get(StorageKeys.accessToken);
+    final storageToken = await bindingCache.getString(CacheKey.accessToken);
 
     logger.d(
-        "--> ${options.method != null
-            ? options.method.toUpperCase()
-            : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
+        "--> ${options.method != null ? options.method.toUpperCase() : 'METHOD'} ${"" + (options.baseUrl ?? "") + (options.path ?? "")}");
     logger.i("Headers:");
 
     options.headers.forEach((k, v) => print('$k: $v'));
@@ -36,12 +32,10 @@ class LoggingInterceptors extends InterceptorsWrapper {
     }
 
     logger.i(
-        "--> END ${options.method != null
-            ? options.method.toUpperCase()
-            : 'METHOD'}");
+        "--> END ${options.method != null ? options.method.toUpperCase() : 'METHOD'}");
 
-    if (options.headers.containsKey('required_token')) {
-      options.headers.remove('required_token');
+    if (options.headers.containsKey('access_token')) {
+      options.headers.remove('access_token');
       logger.i('accessToken: $storageToken');
       options.headers.addAll({'Authorization': 'Bearer $storageToken'});
     }
@@ -51,9 +45,7 @@ class LoggingInterceptors extends InterceptorsWrapper {
   @override
   Future onResponse(Response response) {
     logger.v(
-        "<-- ${response.statusCode} ${(response.request != null
-            ? (response.request.baseUrl + response.request.path)
-            : 'URL')}");
+        "<-- ${response.statusCode} ${(response.request != null ? (response.request.baseUrl + response.request.path) : 'URL')}");
 
     logger.i("Headers:");
 
@@ -66,28 +58,24 @@ class LoggingInterceptors extends InterceptorsWrapper {
   @override
   Future onError(DioError dioError) async {
     logger.e(
-        "<-- ${dioError.message} ${(dioError.response?.request != null
-            ? (dioError.response.request.baseUrl + dioError.response.request.path)
-            : 'URL')}");
+        "<-- ${dioError.message} ${(dioError.response?.request != null ? (dioError.response.request.baseUrl + dioError.response.request.path) : 'URL')}");
 
     logger.e(
-        "${dioError.response != null
-            ? dioError.response.data
-            : 'Unknown Error'}");
+        "${dioError.response != null ? dioError.response.data : 'Unknown Error'}");
 
     logger.e("<-- End error");
 
     int responseCode = dioError.response.statusCode;
-    final storageToken = await CacheLocal.get(StorageKeys.accessToken);
+    final storageToken = await bindingCache.getString(CacheKey.accessToken);
 
-    if (storageToken != null && responseCode == 401 && _cacheStorage != null) {
+    if (storageToken != null && responseCode == 401 && storageToken != null) {
       _dio.interceptors.requestLock.lock();
       _dio.interceptors.responseLock.lock();
       RequestOptions options = dioError.response.request;
 
       //implementation refresh token
 
-      options.headers.addAll({'required_token': true});
+      options.headers.addAll({'access_token': true});
       options.headers['Authorization'] = 'Bearer' + storageToken;
 
       _dio.interceptors.requestLock.unlock();

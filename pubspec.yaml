@@ -32,6 +32,7 @@ dependencies:
   flutter_hooks: ^0.15.0
   flutter_bloc: ^6.1.1
   get_it: ^5.0.1
+  get: ^3.23.1
   google_sign_in: ^4.5.6
   image_picker: ^0.6.7+14
   lint:

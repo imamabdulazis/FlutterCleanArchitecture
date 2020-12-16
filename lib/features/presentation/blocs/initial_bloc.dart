@@ -1,5 +1,5 @@
 import 'package:clean_architect/core/usecases/usecase.dart';
-import 'package:clean_architect/core/utils/result_state.dart';
+import 'package:clean_architect/features/data/datasources/common/result_state.dart';
 import 'package:clean_architect/features/domain/usecases/binding_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 

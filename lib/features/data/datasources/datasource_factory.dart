@@ -1,28 +1,28 @@
 import 'package:clean_architect/features/data/datasources/binding/binding_datasource.dart';
-import 'package:clean_architect/features/data/datasources/binding/cache/cache_remote.dart';
-import 'package:clean_architect/features/data/datasources/binding/network/binding_api.dart';
+import 'package:clean_architect/features/data/datasources/binding/local/binding_local.dart';
+import 'package:clean_architect/features/data/datasources/binding/remote/binding_remote.dart';
 import 'package:clean_architect/features/data/datasources/common/base_datasource_factory.dart';
 import 'package:flutter/cupertino.dart';
 
 class BindingDataSourceFactory
     extends BaseDataSourceFactory<BindingDataSource> {
-  BindingApi _bindingApi;
-  CacheRemote _cacheApi;
+  BindingRemote _bindingRemote;
+  BindingLocal _bindingLocal;
 
   BindingDataSourceFactory({
-    @required BindingApi bindingApi,
-    @required CacheRemote cacheApi,
-  })  : _bindingApi = bindingApi,
-        _cacheApi = cacheApi;
+    @required BindingRemote bindingRemote,
+    @required BindingLocal bindingLocal,
+  })  : _bindingRemote = bindingRemote,
+        _bindingLocal = bindingLocal;
 
   @override
   BindingDataSource createData(DataSourceState dataSourceState) {
     switch (dataSourceState) {
       case DataSourceState.network:
-        return _bindingApi;
+        return _bindingRemote;
         break;
       case DataSourceState.local:
-        return _cacheApi;
+        return _bindingLocal;
       default:
         throw UnsupportedError(
             'dataSourceState $dataSourceState is not applicable in BindingDataSourceFactory');

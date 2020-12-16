@@ -1,6 +1,7 @@
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
 import 'package:clean_architect/features/domain/entities/sign_entity.dart';
 import 'package:clean_architect/features/domain/entities/user_entity.dart';
+import 'package:flutter/foundation.dart';
 
 abstract class BindingDataSource {
   Future<SignEmailEntity> signWithEmail(SignEmailBody signEmailBody);
