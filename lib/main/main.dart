@@ -1,8 +1,11 @@
+import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
 import 'package:clean_architect/features/di/injection_container.dart' as di;
+import 'package:clean_architect/features/presentation/screens/home/home_screen.dart';
 import 'package:clean_architect/features/presentation/screens/login/login_screen.dart';
 import 'package:clean_architect/features/presentation/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
 void main() async {
@@ -26,22 +29,8 @@ class App extends StatelessWidget {
       getPages: [
         GetPage(name: '/', page: () => SplashScreen()),
         GetPage(name: LoginScreen.route, page: () => LoginScreen()),
-        GetPage(name: Main.route, page: () => Main()),
+        GetPage(name: HomeScreen.route, page: () => HomeScreen()),
       ],
-    );
-  }
-}
-
-//NOTE : navigation
-class Main extends StatelessWidget {
-  static const String route = "Main";
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text("BERHASIL LOGIN"),
-      ),
     );
   }
 }

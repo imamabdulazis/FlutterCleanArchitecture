@@ -1,6 +1,7 @@
 import 'package:clean_architect/features/data/datasource/common/result.dart';
 import 'package:clean_architect/features/di/injection_container.dart';
 import 'package:clean_architect/features/presentation/blocs/initial_bloc.dart';
+import 'package:clean_architect/features/presentation/screens/home/home_screen.dart';
 import 'package:clean_architect/features/presentation/screens/login/login_screen.dart';
 import 'package:clean_architect/main/main.dart';
 import 'package:flutter/cupertino.dart';
@@ -29,7 +30,7 @@ class SplashScreen extends HookWidget {
         if (!event.data) {
           Get.toNamed(LoginScreen.route);
         } else {
-          Get.toNamed(Main.route);
+          Get.toNamed(HomeScreen.route);
         }
       }
     }).onError((err) {
