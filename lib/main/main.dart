@@ -1,10 +1,6 @@
-import 'package:clean_architect/core/helper/helper.dart';
 import 'package:clean_architect/features/di/injection_container.dart' as di;
 import 'package:clean_architect/features/presentation/screens/login/login_screen.dart';
-import 'package:clean_architect/features/presentation/screens/login/login_screen_factory.dart';
 import 'package:clean_architect/features/presentation/screens/splash/splash_screen.dart';
-import 'package:clean_architect/features/presentation/screens/splash/splash_screen_factory.dart';
-import 'package:clean_architect/main/main_screen_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -28,9 +24,9 @@ class App extends StatelessWidget {
       navigatorObservers: [routeObserver],
       initialRoute: '/',
       getPages: [
-        GetPage(name: '/', page: makeSplashScreen),
-        GetPage(name: LoginScreen.route, page: makeLoginScreen),
-        GetPage(name: Main.route, page: makeMainScreen),
+        GetPage(name: '/', page: () => SplashScreen()),
+        GetPage(name: LoginScreen.route, page: () => LoginScreen()),
+        GetPage(name: Main.route, page: () => Main()),
       ],
     );
   }
