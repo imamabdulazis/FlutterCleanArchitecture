@@ -1,31 +1,31 @@
 import 'package:clean_architect/core/network/http_client.dart';
 import 'package:clean_architect/core/network/network_info.dart';
 import 'package:clean_architect/core/utils/input_converter.dart';
-import 'package:clean_architect/features/data/datasources/binding/cache/binding_cache.dart';
-import 'package:clean_architect/features/data/datasources/binding/local/binding_local.dart';
-import 'package:clean_architect/features/data/datasources/binding/remote/binding_remote.dart';
-import 'package:clean_architect/features/data/datasources/datasource_factory.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
+import 'package:clean_architect/features/data/datasource/binding/local/binding_local.dart';
+import 'package:clean_architect/features/data/datasource/binding/remote/binding_remote.dart';
+import 'package:clean_architect/features/data/datasource/datasource_factory.dart';
 import 'package:clean_architect/features/data/repositories/user_repository_impl.dart';
 import 'package:clean_architect/features/domain/repositories/user_repository.dart';
 import 'package:clean_architect/features/domain/usecases/binding_usecase.dart';
+import 'package:clean_architect/features/domain/usecases/sign_email_usecase.dart';
 import 'package:clean_architect/features/presentation/blocs/initial_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 //NOTE : input for global data state
 final sl = GetIt.instance;
 
 Future<void> init() async {
+  SharedPrefs prefs = await SharedPrefs.getInstance();
+
   //network
   sl.registerSingleton(HttpClient());
 
   //data
-  sl.registerLazySingleton(() => BindingCache());
-  sl.registerLazySingleton(() => BindingLocal());
+  sl.registerLazySingleton(() => prefs);
+  sl.registerFactory(() => BindingLocal(sl()));
   sl.registerFactory(() => BindingRemote(sl()));
-
-  //service
 
   ///  bloc
   sl.registerFactory(() => InitialBloc(sl()));
@@ -33,7 +33,7 @@ Future<void> init() async {
 
   //Use cases
   sl.registerFactory(() => CheckBindStatusUsecase(sl()));
-  sl.registerFactory(() => BindToEmailAccountUsecase(sl()));
+  sl.registerFactory(() => SignEmailAccountUsecase(sl()));
 
   //Repository
   sl.registerFactory<BindingDataSourceFactory>(

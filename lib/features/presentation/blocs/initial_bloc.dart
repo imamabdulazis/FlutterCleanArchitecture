@@ -1,16 +1,14 @@
 import 'package:clean_architect/core/usecases/usecase.dart';
-import 'package:clean_architect/features/data/datasources/common/result_state.dart';
+import 'package:clean_architect/features/data/datasource/common/result.dart';
 import 'package:clean_architect/features/domain/usecases/binding_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 
 class InitialBloc {
   final CheckBindStatusUsecase _checkBindStatusUsecase;
 
-  final _bindStatusOut = PublishSubject<ResultState<bool>>();
+  final _bindStatusOut = BehaviorSubject<ResultState<bool>>();
 
-  InitialBloc(this._checkBindStatusUsecase) {
-    print('initial bloc');
-  }
+  InitialBloc(this._checkBindStatusUsecase);
 
   Function(ResultState<bool>) get bindOut => _bindStatusOut.sink.add;
 
@@ -21,10 +19,10 @@ class InitialBloc {
     bindOut(ResultState.setLoading());
     _checkBindStatusUsecase
         .execute(NoParams())
-        .delay(Duration(seconds: 2))
-        .listen((value) => value.fold(
+        .delay(Duration(milliseconds: 3000))
+        .listen((event) => event.fold(
             (error) => bindOut(ResultState.setError(error)),
-            (values) => bindOut(ResultState.setResult(values))));
+            (data) => bindOut(ResultState.setResult(data))));
   }
 
   dispose() {

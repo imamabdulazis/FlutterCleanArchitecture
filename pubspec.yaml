@@ -36,7 +36,8 @@ dependencies:
   google_sign_in: ^4.5.6
   image_picker: ^0.6.7+14
   lint:
-  pedantic: ^1.9.2
+  lottie:
+  pedantic:
   rxdart: ^0.24.1
   logger: ^0.9.4
   shared_preferences: ^0.5.12+4
@@ -62,9 +63,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/animation/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

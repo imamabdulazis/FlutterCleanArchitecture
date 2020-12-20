@@ -19,15 +19,15 @@ class Constants {
     }
   }
 
-  static get SERVER_ONE {
+  static get serverOne {
     return _config[_Config.SERVER_ONE];
   }
 
-  static get SERVER_TWO {
+  static get serverTwo {
     return _config[_Config.SERVER_TWO];
   }
 
-  static get WHERE_AM_I {
+  static get serverThree {
     return _config[_Config.WHERE_AM_I];
   }
 }

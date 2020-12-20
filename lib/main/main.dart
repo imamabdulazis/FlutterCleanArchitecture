@@ -1,5 +1,10 @@
+import 'package:clean_architect/core/helper/helper.dart';
 import 'package:clean_architect/features/di/injection_container.dart' as di;
+import 'package:clean_architect/features/presentation/screens/login/login_screen.dart';
+import 'package:clean_architect/features/presentation/screens/login/login_screen_factory.dart';
 import 'package:clean_architect/features/presentation/screens/splash/splash_screen.dart';
+import 'package:clean_architect/features/presentation/screens/splash/splash_screen_factory.dart';
+import 'package:clean_architect/main/main_screen_factory.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -18,10 +23,15 @@ class App extends StatelessWidget {
     final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
     return GetMaterialApp(
-      title: "Clean",
-      debugShowCheckedModeBanner: false,
+      title: "Clean Architecture",
+      debugShowCheckedModeBanner: true,
       navigatorObservers: [routeObserver],
-      home: SplashScreen(),
+      initialRoute: '/',
+      getPages: [
+        GetPage(name: '/', page: makeSplashScreen),
+        GetPage(name: LoginScreen.route, page: makeLoginScreen),
+        GetPage(name: Main.route, page: makeMainScreen),
+      ],
     );
   }
 }
@@ -34,7 +44,7 @@ class Main extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Text("sdf"),
+        child: Text("BERHASIL LOGIN"),
       ),
     );
   }

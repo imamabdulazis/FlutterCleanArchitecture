@@ -1,8 +1,8 @@
 import 'package:clean_architect/core/error/exception.dart';
 import 'package:clean_architect/core/error/failure.dart';
 import 'package:clean_architect/core/network/network_info.dart';
-import 'package:clean_architect/features/data/datasources/common/base_datasource_factory.dart';
-import 'package:clean_architect/features/data/datasources/datasource_factory.dart';
+import 'package:clean_architect/features/data/datasource/common/base_datasource_factory.dart';
+import 'package:clean_architect/features/data/datasource/datasource_factory.dart';
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
 import 'package:clean_architect/features/data/models/response/sign_model.dart';
 import 'package:clean_architect/features/domain/entities/sign_entity.dart';
@@ -30,6 +30,7 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Stream<Either<Failure, SignEmailEntity>> signWithEmail(
       SignEmailBody body) async* {
+
     final SignEmailModel model = await _bindingDataSourceFactory
         .createData(DataSourceState.network)
         .signWithEmail(body);
@@ -46,15 +47,15 @@ class UserRepositoryImpl implements UserRepository {
     yield Right(model);
   }
 
-  //TODO get account
+  //NOTE : get account
   @override
   Stream<Either<Failure, UserEntity>> getAccount(int userId) async* {
     if (await networkInfo.isConnected) {
       try {
-        final remoteUser = await _bindingDataSourceFactory
+        final dataUser = await _bindingDataSourceFactory
             .createData(DataSourceState.network)
             .getAccount(userId);
-        yield Right(remoteUser);
+        yield Right(dataUser);
       } on ServerException {
         yield Left(ServerFailure(message: "Cannot get User from server"));
       }

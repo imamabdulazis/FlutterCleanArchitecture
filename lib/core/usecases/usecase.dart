@@ -9,6 +9,7 @@ abstract class UseCase<Type, Params> {
 
   Stream<Either<Failure, Type>> execute(Params params) {
     return build(params).onErrorResume((error) {
+      print("error from streams : $error");
       Failure failure;
 
       if (error is Failure) {
