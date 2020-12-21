@@ -33,8 +33,6 @@ class SplashScreen extends HookWidget {
           Get.toNamed(HomeScreen.route);
         }
       }
-    }).onError((err) {
-      print("WADUHHH");
     });
 
     return Scaffold(
