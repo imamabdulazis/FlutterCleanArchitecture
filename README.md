@@ -7,7 +7,6 @@
 <img alt="issue" src="https://img.shields.io/github/issues/imamabdulazis/FlutterCleanArchitecture?color=critical"/>
 <img alt="last commit" src="https://img.shields.io/github/repo-size/imamabdulazis/FlutterCleanArchitecture?color=orange"/>
 <img alt="last commit" src="https://img.shields.io/github/search/imamabdulazis/FlutterCleanArchitecture/flutter%20clean%20architecture?color=brightgreen"/>
-<img alt="last commit" src="https://img.shields.io/github/commit-activity/w/imamabdulazis/FlutterCleanArchitecture"/>
 <img alt="last commit" src="https://img.shields.io/github/downloads/imamabdulazis/FlutterCleanArchitecture/total"/>
 </p>
 
