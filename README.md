@@ -53,6 +53,152 @@ This is some library and you can click to install from pub dev.
 | [logger](https://pub.dev/packages/logger)                         | Beautiful terminal log    | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
 | [shared_preferences](https://pub.dev/packages/shared_preferences) | Save data local storage   | [![Github Stars](https://img.shields.io/github/stars/flutter/plugins?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/flutter/plugins)     |
 
+>##Usecase
+<p>
+This is part more easy to handling some data error from network or other.
+</p>
+
+```dart
+abstract class UseCase<Type, Params> {
+  Stream<Either<Failure, Type>> build(Params params);
+
+  Stream<Either<Failure, Type>> execute(Params params) {
+    return build(params).onErrorResume((error) {
+      print("error from streams : $error");
+      Failure failure;
+
+      if (error is Failure) {
+        failure = error;
+      } else if (error is DioError) {
+        failure = ServerFailure(message: error.message);
+      } else {
+        failure = AnotherFailure(message: "$error");
+      }
+
+      return Stream.value(Left(failure));
+    });
+  }
+}
+
+class NoParams extends Equatable {
+  @override
+  List<Object> get props => [];
+}
+```
+
+<br/>
+<br/>
+
+>##Datasource Option 
+<p>In this part we are enable to make option where data come from local or network</p>
+
+>####Base Datasource (local or network or other)
+```dart
+abstract class BaseDataSourceFactory<T> {
+  T createData(DataSourceState dataSourceState);
+}
+
+enum DataSourceState { network, local }
+```
+
+>####Datasource factory
+```dart
+class BindingDataSourceFactory
+    extends BaseDataSourceFactory<BindingDataSource> {
+  BindingRemote _bindingRemote;
+  BindingLocal _bindingLocal;
+
+  BindingDataSourceFactory({
+    @required BindingRemote bindingRemote,
+    @required BindingLocal bindingLocal,
+  })  : _bindingRemote = bindingRemote,
+        _bindingLocal = bindingLocal;
+
+  @override
+  BindingDataSource createData(DataSourceState dataSourceState) {
+    switch (dataSourceState) {
+      case DataSourceState.network:
+        return _bindingRemote;
+        break;
+      case DataSourceState.local:
+        return _bindingLocal;
+      default:
+        throw UnsupportedError(
+            'DataSourceState $dataSourceState is not applicable in BindingDataSourceFactory');
+    }
+  }
+}
+```
+
+<br/>
+
+>##Resource String Component
+>####Handling component handling (i18n or Localization)
+<p>
+In this part we must handling component string and prepare if our project 
+is using multiple language
+</p>
+
+```dart
+//NOTE : base translation class
+abstract class Translation {
+  String get msgEmailInUse;
+  String get msgInvalidCredentials;
+  String get msgInvalidField;
+  String get msgRequiredField;
+  String get msgUnexpectedError;
+
+  String get addAccount;
+  String get confirmPassword;
+  String get email;
+  String get enter;
+  String get login;
+  String get name;
+  String get password;
+  String get reload;
+  String get wait;
+}
+
+//NOTE : implement to language class
+
+class ID implements Translation {
+  String get msgEmailInUse => 'Email sudah digunakan';
+  String get msgInvalidCredentials => 'Username atau password salah.';
+  String get msgInvalidField => 'Bidang tidak valid';
+  String get msgRequiredField => 'Kolom yang harus diisi';
+  String get msgUnexpectedError => 'Ada yang salah. Silahkan coba lagi nanti.';
+
+  String get addAccount => 'Buat sebuah akun';
+  String get confirmPassword => 'Konfirmasi sandi';
+  String get email => 'Email';
+  String get enter => 'Gabung';
+  String get login => 'Login';
+  String get name => 'Nama';
+  String get password => 'Kata sandi';
+  String get reload => 'Muat ulang';
+  String get wait => 'Tunggu...';
+}
+
+
+class R {
+  static Translation string = ID();
+
+  static void load(Locale locale) {
+    switch (locale.toString()) {
+      default:
+        string = ID();
+        break;
+    }
+  }
+}
+
+example calling :
+    R.string.msgEmailInUse 
+output :
+    Email sudah digunakan
+
+```
+
 
 
 <br/>
@@ -64,4 +210,5 @@ This architecture is made with love:blush: and more things using great tutorials
 project credit, thank you.
 
 [Filled stack](https://www.filledstacks.com)<br/>
-[Reso Coder](https://resocoder.com)
+[Reso Coder](https://resocoder.com)<br/>
+[Rezky Aulia Pratama](https://github.com/rezkyauliapratama)
