@@ -1,4 +1,4 @@
-# Clean Architecture Flutter <br/> Implementation by Robert C. Martin (Uncle Bob)
+# [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) Flutter Project
 
 
 <p align="center">
