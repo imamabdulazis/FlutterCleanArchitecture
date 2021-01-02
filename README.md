@@ -210,6 +210,7 @@ output :
 This architecture is made with love:blush: and more things using great tutorials by great people, please visit this
 project credit, thank you.
 
+[Flutter Community](https://flutter.dev/community)
 [Filled stack](https://www.filledstacks.com)<br/>
 [Reso Coder](https://resocoder.com)<br/>
 [Rezky Aulia Pratama](https://github.com/rezkyauliapratama)
