@@ -11,7 +11,8 @@
 </p>
 
 <p>This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component.
-First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
+First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.<br/>
+In this case I made a facebook clone with golang's rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly
 </p>
 
 ## Getting Started.
