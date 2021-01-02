@@ -213,5 +213,5 @@ project credit, thank you.
 [Flutter Community](https://flutter.dev/community)<br/>
 [Filled stack](https://www.filledstacks.com)<br/>
 [Reso Coder](https://resocoder.com)<br/>
-[Rezky Aulia Pratama](https://github.com/rezkyauliapratama)
+[Rezky Aulia Pratama](https://github.com/rezkyauliapratama)<br/>
 [Ashish Rawat](https://dev.to/ashishrawat2911/handling-network-calls-and-exceptions-in-flutter-54me)
