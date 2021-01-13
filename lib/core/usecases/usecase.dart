@@ -1,3 +1,4 @@
+import 'package:clean_architect/core/error/dio_exceptions.dart';
 import 'package:clean_architect/core/error/failure.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
@@ -15,11 +16,13 @@ abstract class UseCase<Type, Params> {
       if (error is Failure) {
         failure = error;
       } else if (error is DioError) {
-        failure = ServerFailure(message: error.message);
+        //NOTE : get network exception dio
+        var exception = NetworkExceptions.getDioException(error);
+        var message = NetworkExceptions.getErrorMessage(exception);
+        failure = ServerFailure(message: message);
       } else {
         failure = AnotherFailure(message: "$error");
       }
-
       return Stream.value(Left(failure));
     });
   }

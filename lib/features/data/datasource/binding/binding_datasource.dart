@@ -9,7 +9,5 @@ abstract class BindingDataSource {
 
   Stream<bool> isAlreadyBinding();
 
-  Stream<bool> cacheAccessToken(String token);
-
   Stream<String> getAccessToken();
 }

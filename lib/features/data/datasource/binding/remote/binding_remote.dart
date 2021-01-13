@@ -5,14 +5,13 @@ import 'package:clean_architect/features/domain/entities/sign_entity.dart';
 import 'package:clean_architect/features/domain/entities/user_entity.dart';
 
 class BindingRemote implements BindingDataSource {
-  final HttpClient httpClient;
+  final HttpClient _client;
 
-  BindingRemote(this.httpClient);
+  BindingRemote(this._client);
 
   @override
-  Stream<bool> cacheAccessToken(String token) {
-    // TODO: implement cacheAccessToken
-    throw UnimplementedError();
+  Stream<bool> isAlreadyBinding() {
+    throw UnsupportedError('isAlready binding is not supported in binding Api');
   }
 
   @override
@@ -25,11 +24,6 @@ class BindingRemote implements BindingDataSource {
   Future<UserEntity> getAccount(int userId) {
     // TODO: implement getAccount
     throw UnimplementedError();
-  }
-
-  @override
-  Stream<bool> isAlreadyBinding() {
-    throw UnsupportedError('isAlready binding is not supported in binding Api');
   }
 
   @override

@@ -9,14 +9,14 @@ class LoginButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final size=MediaQuery.of(context).size;
+    final Size size=MediaQuery.of(context).size;
     return FlatButton(
       minWidth: size.width-40,
       onPressed: onPressed,
-      padding: const EdgeInsets.all(12.0),
+      padding: const EdgeInsets.all(15.0),
       color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
       ),
       child: Text(
         title,

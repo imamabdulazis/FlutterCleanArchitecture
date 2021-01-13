@@ -1,6 +1,7 @@
 import 'dart:ui';
 
-import 'package:clean_architect/core/helper/i18n/string/id.dart';
+import 'package:clean_architect/features/presentation/components/helper/helper.dart';
+
 import 'string/translation.dart';
 
 class R {

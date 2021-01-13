@@ -1,5 +1,5 @@
 import 'package:clean_architect/features/data/datasource/binding/binding_datasource.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
 import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
 import 'package:clean_architect/features/domain/entities/sign_entity.dart';
@@ -12,8 +12,9 @@ class BindingLocal implements BindingDataSource {
   BindingLocal(this.prefs);
 
   @override
-  Stream<bool> cacheAccessToken(String token) {
-    throw UnimplementedError();
+  Stream<bool> isAlreadyBinding() async* {
+    var status = prefs.isKeyExists(Constants.accessToken);
+    yield status;
   }
 
   @override
@@ -24,12 +25,6 @@ class BindingLocal implements BindingDataSource {
   @override
   Future<UserEntity> getAccount(int userId) {
     throw UnimplementedError();
-  }
-
-  @override
-  Stream<bool> isAlreadyBinding() async* {
-    var status = prefs.isKeyExists(Constants.accessToken);
-    yield status;
   }
 
   @override

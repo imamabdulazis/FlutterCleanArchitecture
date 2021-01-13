@@ -30,14 +30,15 @@ dependencies:
   equatable: ^1.2.5
   firebase_auth: ^0.18.3+1
   flutter_hooks: ^0.15.0
-  flutter_bloc: ^6.1.1
+  freezed: ^0.12.6
   get_it: ^5.0.1
   get: ^3.23.1
   google_sign_in: ^4.5.6
   image_picker: ^0.6.7+14
-  lint:
+  json_annotation: ^3.1.0
   lottie:
-  pedantic:
+  material_design_icons_flutter: ^4.0.5345
+  provider: ^4.3.2+3
   rxdart: ^0.24.1
   logger: ^0.9.4
   shared_preferences: ^0.5.12+4
@@ -50,6 +51,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  lint:
+  pedantic:
+  build_runner: ^1.10.11
+  freezed_annotation: ^0.12.0
+  json_serializable: ^3.5.1
+
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,6 +72,7 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/animation/
+    - assets/img/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

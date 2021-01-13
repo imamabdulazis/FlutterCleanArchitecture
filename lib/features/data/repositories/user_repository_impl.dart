@@ -30,20 +30,10 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Stream<Either<Failure, SignEmailEntity>> signWithEmail(
       SignEmailBody body) async* {
-
     final SignEmailModel model = await _bindingDataSourceFactory
         .createData(DataSourceState.network)
         .signWithEmail(body);
 
-    //NOTE : verified if token is valid
-    bool isSuccess = await _bindingDataSourceFactory
-        .createData(DataSourceState.network)
-        .cacheAccessToken(model.accessToken)
-        .single;
-
-    if (!isSuccess) {
-      yield Left(CacheFailure(message: "Cannot retrieve access token"));
-    }
     yield Right(model);
   }
 

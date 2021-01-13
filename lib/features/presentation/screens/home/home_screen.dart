@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
 import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
 import 'package:clean_architect/features/di/injection_container.dart';
 import 'package:clean_architect/features/presentation/screens/login/login_screen.dart';

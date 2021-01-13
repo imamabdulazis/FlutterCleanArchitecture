@@ -1,7 +1,8 @@
 import 'package:clean_architect/core/network/http_client.dart';
 import 'package:clean_architect/core/network/network_info.dart';
-import 'package:clean_architect/core/utils/input_converter.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
+import 'package:clean_architect/features/presentation/blocs/sign_bloc.dart';
+import 'package:clean_architect/features/presentation/components/utility/input_converter.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
 import 'package:clean_architect/features/data/datasource/binding/local/binding_local.dart';
 import 'package:clean_architect/features/data/datasource/binding/remote/binding_remote.dart';
 import 'package:clean_architect/features/data/datasource/datasource_factory.dart';
@@ -16,11 +17,16 @@ import 'package:get_it/get_it.dart';
 //NOTE : input for global data state
 final sl = GetIt.instance;
 
+const base_url = "sample_base_url";
+
 Future<void> init() async {
   SharedPrefs prefs = await SharedPrefs.getInstance();
 
   //network
-  sl.registerSingleton(HttpClient());
+  sl.registerLazySingleton(() => sl<HttpClient>().dio);
+  sl.registerSingleton(
+    HttpClient(base_url),
+  );
 
   //data
   sl.registerLazySingleton(() => prefs);
@@ -29,7 +35,7 @@ Future<void> init() async {
 
   ///  bloc
   sl.registerFactory(() => InitialBloc(sl()));
-  // sl.registerFactory(() => SignBloc());
+  sl.registerFactory(() => SignBloc());
 
   //Use cases
   sl.registerFactory(() => CheckBindStatusUsecase(sl()));

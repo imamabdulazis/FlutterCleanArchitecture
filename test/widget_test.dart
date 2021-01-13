@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:clean_architect/main/main.dart';
+import 'package:clean_architect/main.dart';
 
 void main() {
 
