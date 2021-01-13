@@ -14,9 +14,9 @@ ThemeData createTheme() {
           fontSize: 30, fontWeight: FontWeight.bold, color: primaryColorDark));
   const InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
       enabledBorder: UnderlineInputBorder(
-          borderSide: BorderSide(color: primaryColorLight)),
+          borderSide: BorderSide(color: Colors.transparent)),
       focusedBorder:
-          UnderlineInputBorder(borderSide: BorderSide(color: primaryColor)),
+          UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
       alignLabelWithHint: true);
   final ButtonThemeData buttonTheme = ButtonThemeData(
       colorScheme: const ColorScheme.light(primary: primaryColor),

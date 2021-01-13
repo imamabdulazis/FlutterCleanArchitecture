@@ -3,28 +3,21 @@ import 'package:flutter/cupertino.dart';
 
 class UserModel extends UserEntity {
   UserModel({
-    @required String username,
-    @required String email,
-    @required String avatar,
-  }) : super(
-          username: username,
-          email: email,
-          avatar: avatar,
-        );
+    @required String name,
+    @required String imageUrl,
+  }) : super(name: name, imageUrl: imageUrl);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
-      username: json['username'],
-      email: json['email'],
-      avatar: json['avatar'],
+      name: json['name'],
+      imageUrl: json['image_url']
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'username': username,
-      'email': email,
-      'avatar': avatar,
+      'name': name,
+      'image_url': imageUrl,
     };
   }
 }
