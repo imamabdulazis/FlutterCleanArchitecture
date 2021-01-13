@@ -1,4 +1,4 @@
-# Clean Architecture Flutter <br/> Implementation by Robert C. Martin (Uncle Bob)
+# [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) Flutter Project
 
 
 <p align="center">
@@ -11,7 +11,8 @@
 </p>
 
 <p>This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component.
-First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
+First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.<br/>
+In this case I made a facebook clone with rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
 </p>
 
 ## Getting Started.
@@ -209,6 +210,8 @@ output :
 This architecture is made with love:blush: and more things using great tutorials by great people, please visit this
 project credit, thank you.
 
+[Flutter Community](https://flutter.dev/community)<br/>
 [Filled stack](https://www.filledstacks.com)<br/>
 [Reso Coder](https://resocoder.com)<br/>
-[Rezky Aulia Pratama](https://github.com/rezkyauliapratama)
+[Rezky Aulia Pratama](https://github.com/rezkyauliapratama)<br/>
+[Ashish Rawat](https://dev.to/ashishrawat2911/handling-network-calls-and-exceptions-in-flutter-54me)
