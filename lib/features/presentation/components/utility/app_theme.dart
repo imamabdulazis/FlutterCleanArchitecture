@@ -15,28 +15,30 @@ ThemeData createTheme() {
   const InputDecorationTheme inputDecorationTheme = InputDecorationTheme(
       enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.transparent)),
-      focusedBorder:
-          UnderlineInputBorder(borderSide: BorderSide(color: Colors.transparent)),
+      focusedBorder: UnderlineInputBorder(
+          borderSide: BorderSide(color: Colors.transparent)),
       alignLabelWithHint: true);
   final ButtonThemeData buttonTheme = ButtonThemeData(
       colorScheme: const ColorScheme.light(primary: primaryColor),
       buttonColor: primaryColor,
-      splashColor: primaryColorLight,
+      splashColor: Colors.grey,
       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 20),
       textTheme: ButtonTextTheme.primary,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)));
 
   return ThemeData(
-      primaryColor: primaryColor,
-      primaryColorDark: primaryColorDark,
-      primaryColorLight: primaryColorLight,
-      highlightColor: secondaryColor,
-      secondaryHeaderColor: secondaryColorDark,
-      disabledColor: disabledColor,
-      dividerColor: dividerColor,
-      accentColor: primaryColor,
-      backgroundColor: Colors.white,
-      textTheme: textTheme,
-      inputDecorationTheme: inputDecorationTheme,
-      buttonTheme: buttonTheme);
+    primaryColor: primaryColor,
+    primaryColorDark: primaryColorDark,
+    primaryColorLight: primaryColorLight,
+    scaffoldBackgroundColor: Colors.grey[500],
+    highlightColor: secondaryColor,
+    secondaryHeaderColor: secondaryColorDark,
+    disabledColor: disabledColor,
+    dividerColor: dividerColor,
+    accentColor: primaryColor,
+    backgroundColor: Colors.white,
+    textTheme: textTheme,
+    inputDecorationTheme: inputDecorationTheme,
+    buttonTheme: buttonTheme,
+  );
 }

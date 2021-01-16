@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 class PostWidget extends StatelessWidget {
   final UserModel currentUser;
 
+  // ignore: sort_constructors_first
   const PostWidget({
     Key key,
     @required this.currentUser,
@@ -22,10 +23,14 @@ class PostWidget extends StatelessWidget {
               children: <Widget>[
                 ProfileAvatar(imageUrl: currentUser.imageUrl),
                 const SizedBox(width: 8.0),
-                const Expanded(
-                  child: TextField(
-                    decoration: InputDecoration.collapsed(
-                        hintText: 'What\'s on your mind?'),
+                Expanded(
+                  child: Ink(
+                    child: InkWell(
+                      onTap: () {
+                        print('create post');
+                      },
+                      child: const Text('What\'s on your mind?'),
+                    ),
                   ),
                 )
               ],
@@ -38,7 +43,7 @@ class PostWidget extends StatelessWidget {
               height: 40.0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
+                children: <Widget>[
                   FlatButton.icon(
                       onPressed: () {},
                       icon: const Icon(

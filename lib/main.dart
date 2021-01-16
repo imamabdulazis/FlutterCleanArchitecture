@@ -9,7 +9,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-void main() async {
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await di.init();
   runApp(App());
@@ -23,12 +23,12 @@ class App extends StatelessWidget {
     final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
     return GetMaterialApp(
-      title: "Clean Architecture",
+      title: 'Clean Architecture',
       debugShowCheckedModeBanner: true,
-      navigatorObservers: [routeObserver],
+      navigatorObservers: <NavigatorObserver>[routeObserver],
       theme: createTheme(),
       initialRoute: '/',
-      getPages: [
+      getPages: <GetPage>[
         GetPage(name: '/', page: () => SplashScreen()),
         GetPage(name: LoginScreen.route, page: () => LoginScreen()),
         GetPage(name: HomeScreen.route, page: () => HomeScreen()),
