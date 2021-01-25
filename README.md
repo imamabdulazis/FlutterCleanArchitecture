@@ -31,9 +31,43 @@ NOTE :
 This project is using flutter version ```1.22.3``` and channel ```stable```
 > ⚠️ If you are get any problem to this project please feel free to create issue
 
+### Introduction
+It is architecture based on the book and blog by Uncle Bob. It is a combination of concepts taken from the Onion Architecture and other architectures. The main focus of the architecture is separation of concerns and scalability. It consists of four main modules: App, Domain, Data, and Device.
+
+<p>The Dependency Rule
+Source code dependencies only point inwards. This means inward modules are neither aware of nor dependent on outer modules. However, outer modules are both aware of and dependent on inner modules. Outer modules represent the mechanisms by which the business rules and policies (inner modules) operate. The more you move inward, the more abstraction is present. The outer you move the more concrete implementations are present. Inner modules are not aware of any classes, functions, names, libraries, etc.. present in the outer modules. They simply represent rules and are completely independent from the implementations.</p>
+
+## Layers
+### Domain
+<p>The Domain module defines the business logic of the application. It is a module that is independent from the development platform i.e. it is written purely in the programming language and does not contain any elements from the platform. The reason for that is that Domain should only be concerned with the business logic of the application, not with the implementation details. This also allows for easy migration between platforms, should any issues arise.</p>
+
+### Contents of Domain
+<h4>Domain is made up of several things.</h4>
+
+### Entities
+✅   Enterprise-wide business rules </br>
+✅   Made up of classes that can contain methods </br>
+✅   Business objects of the application </br>
+✅   Used application-wide </br>
+✅   Least likely to change when something in the application changes </br>
+
+### Usecases
+✅   Application-specific business rules </br>
+✅   Encapsulate all the usecases of the application </br>
+✅   Orchestrate the flow of data throughout the app </br>
+✅   Should not be affected by any UI changes whatsoever </br>
+✅   Might change if the functionality and flow of application change </br>
+
+### Repositories
+✅   Abstract classes that define the expected functionality of outer layers </br>
+✅   Are not aware of outer layers, simply define expected functionality </br>
+✅   E.g. The Login usecase expects a Repository that has login functionality </br>
+✅   Passed to Usecases from outer layers </br>
+✅   Domain represents the inner-most layer. Therefore, it the most abstract layer in the architecture. </br>
+
 <br/>
 
-> ### Library Requirement
+### Library Requirement
 <p>
 We need some library to make our apps is more simple code and clean.
 This is some library and you can click to install from pub dev.
@@ -54,7 +88,12 @@ This is some library and you can click to install from pub dev.
 | [logger](https://pub.dev/packages/logger)                         | Beautiful terminal log    | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
 | [shared_preferences](https://pub.dev/packages/shared_preferences) | Save data local storage   | [![Github Stars](https://img.shields.io/github/stars/flutter/plugins?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/flutter/plugins)     |
 
->##Usecase
+
+## Code Explanation
+<p>In some case we cannot implementation code by theary and just reading some tutorial without complete code. So here we go, I was build some code and improve some code from some tutorial and make it better I think :), I hope in this part can help us to make some simple Boilerplate.</p>
+
+### Usecase
+
 <p>
 This is part more easy to handling some data error from network or other.
 </p>
@@ -90,7 +129,7 @@ class NoParams extends Equatable {
 <br/>
 <br/>
 
->##Datasource Option 
+## Datasource Option 
 <p>In this part we are enable to make option where data come from local or network</p>
 
 >####Base Datasource (local or network or other)
@@ -102,7 +141,7 @@ abstract class BaseDataSourceFactory<T> {
 enum DataSourceState { network, local }
 ```
 
->####Datasource factory
+#### Datasource factory
 ```dart
 class BindingDataSourceFactory
     extends BaseDataSourceFactory<BindingDataSource> {
@@ -133,8 +172,8 @@ class BindingDataSourceFactory
 
 <br/>
 
->##Resource String Component
->####Handling component handling (i18n or Localization)
+## Resource String Component
+#### Handling component handling (i18n or Localization)
 <p>
 In this part we must handling component string and prepare if our project 
 is using multiple language
