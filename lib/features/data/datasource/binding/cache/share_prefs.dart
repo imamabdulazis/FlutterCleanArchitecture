@@ -4,7 +4,7 @@ class SharedPrefs {
   static SharedPrefs _instance;
   static SharedPreferences _prefs;
 
-  // function
+  /// function [Initial] function when inject shared preference
   static Future<SharedPrefs> getInstance() async {
     if (_instance == null) {
       _instance = SharedPrefs();

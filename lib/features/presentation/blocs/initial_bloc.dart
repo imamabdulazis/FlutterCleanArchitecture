@@ -4,11 +4,11 @@ import 'package:clean_architect/features/domain/usecases/binding_usecase.dart';
 import 'package:rxdart/rxdart.dart';
 
 class InitialBloc {
+  InitialBloc(this._checkBindStatusUsecase);
+
   final CheckBindStatusUsecase _checkBindStatusUsecase;
 
   final _bindStatusOut = BehaviorSubject<ResultState<bool>>();
-
-  InitialBloc(this._checkBindStatusUsecase);
 
   Function(ResultState<bool>) get bindOut => _bindStatusOut.sink.add;
 
@@ -19,13 +19,11 @@ class InitialBloc {
     bindOut(ResultState.setLoading());
     _checkBindStatusUsecase
         .execute(NoParams())
-        .delay(Duration(milliseconds: 3000))
+        .delay(const Duration(milliseconds: 3000))
         .listen((event) => event.fold(
             (error) => bindOut(ResultState.setError(error)),
             (data) => bindOut(ResultState.setResult(data))));
   }
 
-  dispose() {
-    _bindStatusOut.close();
-  }
+  dispose() => _bindStatusOut.close();
 }

@@ -1,18 +1,16 @@
-import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
-import 'package:clean_architect/features/di/injection_container.dart';
-import 'package:clean_architect/features/presentation/components/helper/helper.dart';
-import 'package:clean_architect/features/presentation/components/utility/palette.dart';
-import 'package:clean_architect/features/presentation/components/widget/button_contain.dart';
-import 'package:clean_architect/features/presentation/components/widget/headline1.dart';
-import 'package:clean_architect/features/presentation/screens/home/home_screen.dart';
-import 'package:clean_architect/features/presentation/screens/login/local_widget/email_input.dart';
-import 'package:clean_architect/features/presentation/screens/login/local_widget/header.dart';
-import 'package:clean_architect/features/presentation/screens/login/local_widget/input_password.dart';
-import 'package:clean_architect/features/presentation/screens/login/local_widget/login_button.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
+
+import '../../../data/datasource/binding/cache/constants.dart';
+import '../../../data/datasource/binding/cache/share_prefs.dart';
+import '../../../di/injection_container.dart';
+import '../../components/utility/palette.dart';
+import '../../components/widget/button_contain.dart';
+import '../home/home_screen.dart';
+import 'local_widget/email_input.dart';
+import 'local_widget/header.dart';
+import 'local_widget/input_password.dart';
 
 class LoginScreen extends HookWidget {
   static const String route = "LoginScreen";

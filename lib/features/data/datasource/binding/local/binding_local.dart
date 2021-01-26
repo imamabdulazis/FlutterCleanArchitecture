@@ -2,8 +2,8 @@ import 'package:clean_architect/features/data/datasource/binding/binding_datasou
 import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
 import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
 import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/user_entity.dart';
+import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
+import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
 
 
 class BindingLocal implements BindingDataSource {
@@ -23,12 +23,12 @@ class BindingLocal implements BindingDataSource {
   }
 
   @override
-  Future<UserEntity> getAccount(int userId) {
+  Stream<UserModelEntity> getAccount(int userId) {
     throw UnimplementedError();
   }
 
   @override
-  Future<SignEmailEntity> signWithEmail(SignEmailBody signEmailBody) {
+  Stream<SignModelEntity> signWithEmail(SignEmailBody signEmailBody) {
     throw UnimplementedError();
   }
 }

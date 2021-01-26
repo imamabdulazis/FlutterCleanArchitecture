@@ -1,23 +1,24 @@
-import 'package:clean_architect/core/error/exception.dart';
-import 'package:clean_architect/core/error/failure.dart';
-import 'package:clean_architect/core/network/network_info.dart';
-import 'package:clean_architect/features/data/datasource/common/base_datasource_factory.dart';
-import 'package:clean_architect/features/data/datasource/datasource_factory.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/data/models/response/sign_model.dart';
-import 'package:clean_architect/features/domain/entities/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/user_entity.dart';
-import 'package:clean_architect/features/domain/repositories/user_repository.dart';
+import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/foundation.dart';
 
-class UserRepositoryImpl implements UserRepository {
-  BindingDataSourceFactory _bindingDataSourceFactory;
-  NetworkInfo networkInfo;
+import '../../../core/error/exception.dart';
+import '../../../core/error/failure.dart';
+import '../../../core/network/network_info.dart';
+import '../../domain/entities/response/user_model_entity.dart';
+import '../../domain/repositories/user_repository.dart';
+import '../datasource/common/base_datasource_factory.dart';
+import '../datasource/datasource_factory.dart';
+import '../models/request/sign_body.dart';
+import '../models/response/sign_model.dart';
 
+class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({
     @required BindingDataSourceFactory bindingDataSourceFactory,
   }) : _bindingDataSourceFactory = bindingDataSourceFactory;
+
+  BindingDataSourceFactory _bindingDataSourceFactory;
+  NetworkInfo networkInfo;
 
   @override
   Stream<Either<Failure, bool>> checkBindStatus() {
@@ -28,28 +29,26 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Stream<Either<Failure, SignEmailEntity>> signWithEmail(
-      SignEmailBody body) async* {
-    final SignEmailModel model = await _bindingDataSourceFactory
+  Stream<Either<Failure, SignModelEntity>> signWithEmail(SignEmailBody body) {
+    return _bindingDataSourceFactory
         .createData(DataSourceState.network)
-        .signWithEmail(body);
-
-    yield Right(model);
+        .signWithEmail(body)
+        .map((event) => Right(event));
   }
 
-  //NOTE : get account
+  ///NOTE : get [Account]
   @override
-  Stream<Either<Failure, UserEntity>> getAccount(int userId) async* {
+  Stream<Either<Failure, UserModelEntity>> getAccount(int userId) async* {
     if (await networkInfo.isConnected) {
       try {
-        final dataUser = await _bindingDataSourceFactory
+        _bindingDataSourceFactory
             .createData(DataSourceState.network)
-            .getAccount(userId);
-        yield Right(dataUser);
+            .getAccount(userId)
+            .map((event) => Right(event));
       } on ServerException {
-        yield Left(ServerFailure(message: "Cannot get User from server"));
+        yield Left(ServerFailure(error: 'Cannot get User from server'));
       }
     }
-    yield Left(ServerFailure(message: "Network request failure"));
+    yield Left(ServerFailure(error: 'Network request failure'));
   }
 }

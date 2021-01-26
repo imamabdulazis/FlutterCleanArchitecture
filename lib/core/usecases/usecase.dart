@@ -16,12 +16,10 @@ abstract class UseCase<Type, Params> {
       if (error is Failure) {
         failure = error;
       } else if (error is DioError) {
-        //NOTE : get network exception dio
-        var exception = NetworkExceptions.getDioException(error);
-        var message = NetworkExceptions.getErrorMessage(exception);
-        failure = ServerFailure(message: message);
+        ///[NOTE] : get [Network] Exception [dio]
+        failure = ServerFailure(error: error);
       } else {
-        failure = AnotherFailure(message: "$error");
+        failure = AnotherFailure(error: "$error");
       }
       return Stream.value(Left(failure));
     });

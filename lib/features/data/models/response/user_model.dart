@@ -1,7 +1,7 @@
-import 'package:clean_architect/features/domain/entities/user_entity.dart';
+import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
 import 'package:flutter/cupertino.dart';
 
-class UserModel extends UserEntity {
+class UserModel extends UserModelEntity {
   UserModel({
     @required String name,
     @required String imageUrl,
