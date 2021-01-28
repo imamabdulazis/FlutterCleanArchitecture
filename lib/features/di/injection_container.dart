@@ -1,8 +1,8 @@
-import 'package:clean_architect/features/presentation/blocs/initial_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../core/env/config.dart';
+import '../../core/error/sentry_exceptions.dart';
 import '../../core/network/http_client.dart';
 import '../../core/network/network_info.dart';
 import '../data/datasource/binding/cache/share_prefs.dart';
@@ -13,8 +13,8 @@ import '../data/repositories/user_repository_impl.dart';
 import '../domain/repositories/user_repository.dart';
 import '../domain/usecases/binding_usecase.dart';
 import '../domain/usecases/sign_email_usecase.dart';
+import '../presentation/blocs/initial_bloc.dart';
 import '../presentation/blocs/sign_bloc.dart';
-import '../presentation/components/utility/input_converter.dart';
 
 ///[NOTE] : input for [Global] data state
 final sl = GetIt.instance;
@@ -38,7 +38,9 @@ Future<void> init() async {
 
   ///[Core]
   sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
-  sl.registerLazySingleton(() => InputConverter());
+
+  ///sentry client
+  sl.registerLazySingleton(() => SentryException());
 
   ///[External]
   sl.registerLazySingleton(() => DataConnectionChecker());

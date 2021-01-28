@@ -64,7 +64,13 @@ void disableErrorWidget() {
     ErrorWidget.builder = (details) {
       print('Error widget trigerred on :${details.exception}');
       print(details.stack.toString());
-      return Container();
+      return Container(
+        child:const Center(
+          child: Text(
+            'Something Goes Wrong, Please chek your debug console'
+          ),
+        ),
+      );
     };
   }
 }
