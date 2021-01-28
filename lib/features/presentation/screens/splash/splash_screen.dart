@@ -14,7 +14,7 @@ class SplashScreen extends HookWidget {
 
   @override
   Widget build(BuildContext context) {
-    final bloc = sl<InitialBloc>();
+    final bloc = sl<SplashBloc>();
 
     useEffect(() {
       bloc.checkBindStatus();

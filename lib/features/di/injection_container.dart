@@ -1,7 +1,8 @@
-import 'package:clean_architect/core/env/config.dart';
+import 'package:clean_architect/features/presentation/blocs/initial_bloc.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 
+import '../../core/env/config.dart';
 import '../../core/network/http_client.dart';
 import '../../core/network/network_info.dart';
 import '../data/datasource/binding/cache/share_prefs.dart';
@@ -12,7 +13,6 @@ import '../data/repositories/user_repository_impl.dart';
 import '../domain/repositories/user_repository.dart';
 import '../domain/usecases/binding_usecase.dart';
 import '../domain/usecases/sign_email_usecase.dart';
-import '../presentation/blocs/initial_bloc.dart';
 import '../presentation/blocs/sign_bloc.dart';
 import '../presentation/components/utility/input_converter.dart';
 
@@ -44,7 +44,7 @@ Future<void> init() async {
   sl.registerLazySingleton(() => DataConnectionChecker());
 
   ///[Bloc]
-  sl.registerFactory(() => InitialBloc(sl()));
+  sl.registerFactory(() => SplashBloc(sl()));
   sl.registerFactory(() => SignBloc());
 
   ///[Usecases]
