@@ -34,6 +34,14 @@ You can clone this library using :
 git clone https://github.com/imamabdulazis/Flutter-Clean-Architectur-Bloc-RxDart-Dio.git
 ```
 
+#### Run Project
+```shell
+flutter run --flavor development
+```
+You can choose another flavor staging or production or your custom flavor.
+
+<br/>
+
 NOTE :
 This project is using flutter version ```1.22.3``` and channel ```stable```
 > ⚠️ If you are get any problem to this project please feel free to create issue
