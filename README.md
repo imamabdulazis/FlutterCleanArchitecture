@@ -11,15 +11,21 @@
 <img alt="last commit" src="https://img.shields.io/github/search/imamabdulazis/FlutterCleanArchitecture/flutter%20clean%20architecture?color=brightgreen"/>
 <img alt="last commit" src="https://img.shields.io/github/downloads/imamabdulazis/FlutterCleanArchitecture/total"/>
 </p>
-
-<p>This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component.
-First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.<br/>
+<p>
+This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component. First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
 In this case I made a facebook clone with rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
+</p>
+
+<p>
+    Clean Architecture combines a group of practices that produce systems with the following characteristics: </br>
+    ✅   Testable </br>
+    ✅   UI-independent (the UI can easily be changed without changing the system) </br>
+    ✅   Independent of databases, frameworks, external agencies, and libraries </br>
 </p>
 
 
 ## Introduction
-It is architecture based on the book and blog by Uncle Bob. It is a combination of concepts taken from the Onion Architecture and other architectures. The main focus of the architecture is separation of concerns and scalability. It consists of four main modules: App, Domain, Data, and Device.
+The dependency rule is the overriding rule that makes Clean Architecture work. It says that nothing in an inner circle should depend on anything in an outer circle. In particular, application and business rules shouldn’t depend on the UI, database, presenters, and so on. These rules allow us to build systems that are simpler to maintain, as changes in outer circles won’t impact inner ones.
 
 
 ## Getting Started.
