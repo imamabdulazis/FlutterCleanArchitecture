@@ -386,7 +386,7 @@ This is some library and you can click to install from pub dev.
 ## Code Explanation
 <p>In some case we cannot implementation code by theary and just reading some tutorial without complete code. So here we go, I was build some code and improve some code from some tutorial and make it better I think :), I hope in this part can help us to make some simple Boilerplate.</p>
 
-## Usecase
+### Usecase
 
 <p>
 This is part more easy to handling some data error from network or other.
@@ -423,7 +423,7 @@ class NoParams extends Equatable {
 <br/>
 <br/>
 
-## Datasource Option 
+### Datasource Option 
 <p>In this part we are enable to make option where data come from local or network</p>
 
 >####Base Datasource (local or network or other)
@@ -435,7 +435,7 @@ abstract class BaseDataSourceFactory<T> {
 enum DataSourceState { network, local }
 ```
 
-## Datasource factory
+### Datasource factory
 ```dart
 class BindingDataSourceFactory
     extends BaseDataSourceFactory<BindingDataSource> {
@@ -466,7 +466,7 @@ class BindingDataSourceFactory
 
 <br/>
 
-## Internationalization
+### Internationalization
 <p>
 Internationalization is the design and development of a product, application or document content that enables easy localization for target audiences that vary in culture, region, or language. Internationalization is often written in English as i18n, where 18 is the number of letters between i and n in the English word
 </p>
