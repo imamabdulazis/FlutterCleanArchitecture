@@ -15,6 +15,9 @@
 ![CleanArchitecture](https://user-images.githubusercontent.com/39134128/101283060-f3708c80-380a-11eb-94de-199f0fc01739.jpg)
 
 
+
+## [Documentation & Samples](https://imamabdulazis.github.io/FlutterCleanArchitecture) 
+
 <p>
 This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component. First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
 In this case I made a facebook clone with rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
@@ -57,8 +60,6 @@ The dependency rule is the overriding rule that makes Clean Architecture work. I
 ✅   E.g. The Login usecase expects a Repository that has login functionality </br>
 ✅   Passed to Usecases from outer layers </br>
 ✅   Domain represents the inner-most layer. Therefore, it the most abstract layer in the architecture. </br>
-
-
 
 
 ## Getting Started
