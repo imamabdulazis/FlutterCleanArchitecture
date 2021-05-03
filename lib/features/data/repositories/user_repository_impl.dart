@@ -1,37 +1,35 @@
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter/foundation.dart';
 
 import '../../../core/error/exception.dart';
 import '../../../core/error/failure.dart';
-import '../../../core/network/network_info.dart';
+import '../../domain/entities/request/sign_entity.dart';
 import '../../domain/entities/response/user_model_entity.dart';
 import '../../domain/repositories/user_repository.dart';
 import '../datasource/common/base_datasource_factory.dart';
 import '../datasource/datasource_factory.dart';
 import '../models/request/sign_body.dart';
-import '../models/response/sign_model.dart';
 
 class UserRepositoryImpl implements UserRepository {
   UserRepositoryImpl({
-    @required BindingDataSourceFactory bindingDataSourceFactory,
+    required BindingDataSourceFactory? bindingDataSourceFactory,
   }) : _bindingDataSourceFactory = bindingDataSourceFactory;
+ 
+  final BindingDataSourceFactory? _bindingDataSourceFactory;
+  
 
-  BindingDataSourceFactory _bindingDataSourceFactory;
-  NetworkInfo networkInfo;
 
   @override
   Stream<Either<Failure, bool>> checkBindStatus() {
-    return _bindingDataSourceFactory
-        .createData(DataSourceState.local)
+  return _bindingDataSourceFactory!
+        .createData(DataSourceState.local)!
         .isAlreadyBinding()
         .map((event) => Right(event));
   }
 
   @override
   Stream<Either<Failure, SignModelEntity>> signWithEmail(SignEmailBody body) {
-    return _bindingDataSourceFactory
-        .createData(DataSourceState.network)
+    return _bindingDataSourceFactory!
+        .createData(DataSourceState.network)!
         .signWithEmail(body)
         .map((event) => Right(event));
   }
@@ -39,16 +37,16 @@ class UserRepositoryImpl implements UserRepository {
   ///NOTE : get [Account]
   @override
   Stream<Either<Failure, UserModelEntity>> getAccount(int userId) async* {
-    if (await networkInfo.isConnected) {
+    // if (await networkInfo.isConnected) {
       try {
-        _bindingDataSourceFactory
-            .createData(DataSourceState.network)
+        _bindingDataSourceFactory!
+            .createData(DataSourceState.network)!
             .getAccount(userId)
             .map((event) => Right(event));
       } on ServerException {
         yield Left(ServerFailure(error: 'Cannot get User from server'));
       }
     }
-    yield Left(ServerFailure(error: 'Network request failure'));
-  }
+    // yield Left(ServerFailure(error: 'Network request failure'));
+  // }
 }

@@ -7,8 +7,8 @@ class PostWidget extends StatelessWidget {
 
   // ignore: sort_constructors_first
   const PostWidget({
-    Key key,
-    @required this.currentUser,
+    Key? key,
+    required this.currentUser,
   }) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class PostWidget extends StatelessWidget {
           children: <Widget>[
             Row(
               children: <Widget>[
-                ProfileAvatar(imageUrl: currentUser.imageUrl),
+                ProfileAvatar(imageUrl: currentUser.imageUrl!),
                 const SizedBox(width: 8.0),
                 Expanded(
                   child: Ink(

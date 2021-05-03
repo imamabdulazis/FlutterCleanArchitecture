@@ -1,11 +1,8 @@
-import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../core/env/config.dart';
-import '../../core/error/sentry_exceptions.dart';
 import '../../core/network/http_client.dart';
-import '../../core/network/network_info.dart';
-import '../data/datasource/binding/cache/share_prefs.dart';
+import '../data/datasource/binding/cache/shared_prefs.dart';
 import '../data/datasource/binding/local/binding_local.dart';
 import '../data/datasource/binding/remote/binding_remote.dart';
 import '../data/datasource/datasource_factory.dart';
@@ -37,13 +34,10 @@ Future<void> init() async {
   sl.registerFactory(() => BindingRemote(sl()));
 
   ///[Core]
-  sl.registerLazySingleton<NetworkInfo>(() => NetworkInfoImpl(sl()));
 
   ///sentry client
-  sl.registerLazySingleton(() => SentryException());
 
   ///[External]
-  sl.registerLazySingleton(() => DataConnectionChecker());
 
   ///[Bloc]
   sl.registerFactory(() => SplashBloc(sl()));

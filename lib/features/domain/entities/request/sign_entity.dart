@@ -1,8 +1,8 @@
 import 'package:equatable/equatable.dart';
 
 class SignModelEntity extends Equatable {
-  final String accessToken;
-  final String refreshToken;
+  final String? accessToken;
+  final String? refreshToken;
 
   SignModelEntity({
     this.accessToken,
@@ -10,5 +10,5 @@ class SignModelEntity extends Equatable {
   });
 
   @override
-  List<Object> get props => [accessToken, refreshToken];
+  List<Object> get props => [accessToken!, refreshToken!];
 }

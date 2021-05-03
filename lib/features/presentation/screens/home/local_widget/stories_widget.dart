@@ -10,7 +10,7 @@ class StoriesWidget extends StatelessWidget {
   final List<StoryModel> stories;
 
   const StoriesWidget(
-      {Key key, @required this.currentUser, @required this.stories})
+      {Key? key, required this.currentUser, required this.stories})
       : super(key: key);
 
   @override
@@ -52,11 +52,11 @@ class StoriesWidget extends StatelessWidget {
 
 class _StoryCard extends StatelessWidget {
   final bool isAddStory;
-  final UserModel currentUser;
-  final StoryModel story;
+  final UserModel? currentUser;
+  final StoryModel? story;
 
   const _StoryCard(
-      {Key key, this.isAddStory = false, this.currentUser, this.story})
+      {Key? key, this.isAddStory = false, this.currentUser, this.story})
       : super(key: key);
 
   @override
@@ -64,7 +64,7 @@ class _StoryCard extends StatelessWidget {
     return Material(
       child: Ink(
         decoration: BoxDecoration(
-            border: Border.all(color: Colors.grey[350]),
+            border: Border.all(color: Colors.grey[350]!),
             borderRadius: BorderRadius.circular(12)),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
@@ -77,7 +77,7 @@ class _StoryCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
                 child: CachedNetworkImage(
                     imageUrl:
-                        isAddStory ? currentUser.imageUrl : story.imageUrl,
+                        isAddStory ? currentUser!.imageUrl : story!.imageUrl,
                     height: double.infinity,
                     width: 110.0,
                     fit: BoxFit.cover),
@@ -96,8 +96,8 @@ class _StoryCard extends StatelessWidget {
                   top: 10.0,
                   left: 8.0,
                   child: ProfileAvatar(
-                    imageUrl: story.user.imageUrl,
-                    hasBorder: !story.isViewed,
+                    imageUrl: story!.user!.imageUrl!,
+                    hasBorder: !story!.isViewed!,
                   ),
                 ),
               Positioned(
@@ -132,7 +132,7 @@ class _StoryCard extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(
                             horizontal: 8.0, vertical: 8),
                         child: Text(
-                          story.user.name,
+                          story!.user!.name!,
                           style: const TextStyle(
                               color: Colors.white, fontWeight: FontWeight.bold),
                           maxLines: 2,

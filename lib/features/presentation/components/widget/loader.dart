@@ -5,9 +5,9 @@ class Loader extends StatelessWidget {
   final Color color;
 
   const Loader({
-    Key key,
-    @required this.title,
-    @required this.color,
+    Key? key,
+    required this.title,
+    required this.color,
   }) : super(key: key);
 
   @override
@@ -43,7 +43,7 @@ class Loader extends StatelessWidget {
                     title,
                     style: Theme.of(context)
                         .primaryTextTheme
-                        .button
+                        .button!
                         .copyWith(color: Colors.white),
                   ),
                   const SizedBox(width: 10.0),

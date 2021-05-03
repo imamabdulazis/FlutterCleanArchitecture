@@ -11,6 +11,7 @@ import 'core/env/flavor.dart';
 import 'core/error/sentry_exceptions.dart';
 import 'features/di/injection_container.dart' as di;
 import 'features/presentation/components/utility/app_theme.dart';
+import 'features/presentation/components/utility/app_theme.dart';
 import 'features/presentation/components/utility/observer.dart';
 import 'features/presentation/screens/home/home_screen.dart';
 import 'features/presentation/screens/login/login_screen.dart';
@@ -29,19 +30,19 @@ Future<void> main() async {
     if (!kReleaseMode) {
       FlutterError.dumpErrorToConsole(details);
     } else {
-      Zone.current.handleUncaughtError(details.exception, details.stack);
+      Zone.current.handleUncaughtError(details.exception, details.stack!);
     }
   };
 
   /// [run apps] with catch error
-  runZoned<Future<void>>(() async {
+  runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
     Bloc.observer = MyBlocObserver();
     await getFlavorSetting();
     await di.init();
     await disableLendscapeMode();
     disableErrorWidget();
-    runApp(new MyApp());
+    runApp(MyApp());
 
     ///[console] flavor running
     if (!kReleaseMode) {
@@ -50,11 +51,9 @@ Future<void> main() async {
       print('🚀 APP API_BASE_URL     : ${settings.apiBaseUrl}');
       print('🚀 APP API_SENTRY       : ${settings.apiSentry}');
     }
-  }, onError: (error, stackTrace) async {
-    final sentryException = di.sl<SentryException>();
-    sentryException.reportError(error, stackTrace);
-    print("❎ ERROR OTHER   :$error");
-    print("❎ STACKTRACE    :$stackTrace");
+  }, (error, stackTrace) {
+    print('❎ ERROR OTHER   :$error');
+    print('❎ STACKTRACE    :$stackTrace');
   });
 }
 
@@ -65,10 +64,8 @@ void disableErrorWidget() {
       print('Error widget trigerred on :${details.exception}');
       print(details.stack.toString());
       return Container(
-        child:const Center(
-          child: Text(
-            'Something Goes Wrong, Please chek your debug console'
-          ),
+        child: const Center(
+          child: Text('Something Goes Wrong, Please chek your debug console'),
         ),
       );
     };
@@ -109,7 +106,7 @@ class MyApp extends StatelessWidget {
       title: 'Facebook',
       debugShowCheckedModeBanner: true,
       navigatorObservers: <NavigatorObserver>[routeObserver],
-      theme: createTheme(),
+      theme: CreateTheme.lightTheme,
       initialRoute: '/',
       getPages: <GetPage>[
         GetPage(name: '/', page: () => SplashScreen()),

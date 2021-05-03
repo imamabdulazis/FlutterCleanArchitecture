@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 
-class AccountScreen extends HookWidget {
+
+class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 
 class SignEmailModel extends SignModelEntity {
   SignEmailModel({
-    @required String accessToken,
-    @required String refreshToken,
+    @required String? accessToken,
+    @required String? refreshToken,
   }) : super(
           accessToken: accessToken,
           refreshToken: refreshToken,

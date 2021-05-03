@@ -14,14 +14,14 @@ enum titleColor{
 }
 
 class ButtonContain extends StatelessWidget {
-  final String title;
-  final Color buttonColors;
-  final Color titleColors;
-  final Function onPressed;
+  final String? title;
+  final Color? buttonColors;
+  final Color? titleColors;
+  final Function? onPressed;
 
   // ignore: sort_constructors_first
   const ButtonContain({
-    Key key,
+    Key? key,
     this.title = 'Login',
     this.buttonColors,
     this.titleColors,
@@ -33,14 +33,14 @@ class ButtonContain extends StatelessWidget {
     final Size size = MediaQuery.of(context).size;
     return FlatButton(
       minWidth: size.width - 40,
-      onPressed: onPressed,
+      onPressed: ()=>onPressed!,
       padding: const EdgeInsets.all(15.0),
       color:buttonColors,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(5),
       ),
       child: Text(
-        title,
+        title!,
         overflow: TextOverflow.ellipsis,
         style: CupertinoTheme.of(context).textTheme.textStyle.copyWith(
               color: titleColors,

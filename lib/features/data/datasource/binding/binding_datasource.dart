@@ -13,6 +13,4 @@ abstract class BindingDataSource {
   ///get [account] user
   Stream<UserModelEntity> getAccount(int userId);
 
-  ///get [access] token
-  Stream<String> getAccessToken();
 }

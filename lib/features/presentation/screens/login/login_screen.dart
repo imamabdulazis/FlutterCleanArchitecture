@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
-import '../../../data/datasource/binding/cache/constants.dart';
-import '../../../data/datasource/binding/cache/share_prefs.dart';
 import '../../../di/injection_container.dart';
 import '../../components/utility/palette.dart';
 import '../../components/widget/button_contain.dart';
@@ -12,17 +9,12 @@ import 'local_widget/email_input.dart';
 import 'local_widget/header.dart';
 import 'local_widget/input_password.dart';
 
-class LoginScreen extends HookWidget {
+class LoginScreen extends StatelessWidget {
   static const String route = "LoginScreen";
 
   @override
   Widget build(BuildContext context) {
-    final prefs = sl<SharedPrefs>();
 
-    useEffect(() {
-      print("Login Screen");
-      return;
-    }, const []);
 
     return GestureDetector(
       child: Scaffold(
@@ -42,7 +34,6 @@ class LoginScreen extends HookWidget {
                       buttonColors: Palette.facebookBlue,
                       titleColors: Colors.white,
                       onPressed: () {
-                        prefs.putString(Constants.accessToken, 'login');
                         Get.toNamed(HomeScreen.route);
                       },
                     ),

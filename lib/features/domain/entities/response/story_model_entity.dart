@@ -8,9 +8,9 @@ class StoryModelEntity extends Equatable {
   });
 
   final dynamic user;
-  final String imageUrl;
-  final bool isViewed;
+  final String? imageUrl;
+  final bool? isViewed;
 
   @override
-  List<Object> get props => [user, imageUrl, isViewed];
+  List<Object> get props => [user, imageUrl!, isViewed!];
 }

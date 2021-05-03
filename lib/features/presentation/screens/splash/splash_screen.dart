@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:get/get.dart';
 
 import '../../../data/datasource/common/result.dart';
@@ -9,24 +8,19 @@ import '../../blocs/initial_bloc.dart';
 import '../login/login_screen.dart';
 import '../navigation/navigation.dart';
 
-class SplashScreen extends HookWidget {
+class SplashScreen extends StatelessWidget {
   static const String route = 'SplashScreen';
 
   @override
   Widget build(BuildContext context) {
     final bloc = sl<SplashBloc>();
 
-    useEffect(() {
-      bloc.checkBindStatus();
-      return;
-    }, const []);
-
     print('build splash screen');
     bloc.bindStatusStream.listen((event) {
       print('listen ${event.data}');
       print(event);
       if (event.state == CurrentState.SUCCESS) {
-        if (!event.data) {
+        if (event.data != null) {
           Get.offNamed(LoginScreen.route);
         } else {
           Get.off(NavScreen());

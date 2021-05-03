@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 
 class UserModel extends UserModelEntity {
   UserModel({
-    @required String name,
-    @required String imageUrl,
+    @required String? name,
+    @required String? imageUrl,
   }) : super(name: name, imageUrl: imageUrl);
 
   factory UserModel.fromJson(Map<String, dynamic> json) {

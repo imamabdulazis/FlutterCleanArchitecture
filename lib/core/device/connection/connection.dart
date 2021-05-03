@@ -1,6 +1,6 @@
 import 'package:connectivity/connectivity.dart';
 
-ConnectivityResult _connectivityResult;
+ConnectivityResult? _connectivityResult;
 class ConnectionHelper {
 
   static Future _connect() async {

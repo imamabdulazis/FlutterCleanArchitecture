@@ -1,7 +1,7 @@
 class Config {
-  final String flavorName;
-  final String apiBaseUrl;
-  final String apiSentry;
+  final String? flavorName;
+  final String? apiBaseUrl;
+  final String? apiSentry;
 
   // ignore: sort_constructors_first
   Config({
@@ -10,12 +10,12 @@ class Config {
     this.apiSentry,
   });
 
-  static Config _instance;
+  static Config? _instance;
 
   static Config getInstance({
-   String flavorName,
-   String apiBaseUrl,
-   String apiSentry,
+   dynamic flavorName,
+   dynamic apiBaseUrl,
+   dynamic apiSentry,
   }) {
     if (_instance == null) {
       _instance = Config(
@@ -23,8 +23,8 @@ class Config {
         apiBaseUrl: apiBaseUrl,
         apiSentry: apiSentry,
       );
-      return _instance;
+      return _instance!;
     }
-    return _instance;
+    return _instance!;
   }
 }

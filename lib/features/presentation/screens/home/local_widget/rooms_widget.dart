@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class RoomsWidget extends StatelessWidget {
   final List<UserModel> onlineUsers;
 
-  const RoomsWidget({Key key, @required this.onlineUsers}) : super(key: key);
+  const RoomsWidget({Key? key, required this.onlineUsers}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class RoomsWidget extends StatelessWidget {
               return Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 8.0),
                   child:
-                      ProfileAvatar(imageUrl: user.imageUrl, isActive: true));
+                      ProfileAvatar(imageUrl: user.imageUrl!, isActive: true));
             },
           ),
         ),
@@ -52,7 +52,7 @@ class _CreateRoomsButton extends StatelessWidget {
       color: Colors.white,
       borderSide: BorderSide(
         width: 3.0,
-        color: Colors.blueAccent[100],
+        color: Colors.blueAccent[100]!,
       ),
       textColor: Palette.facebookBlue,
       child: Row(

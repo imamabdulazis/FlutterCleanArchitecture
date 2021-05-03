@@ -1,43 +1,87 @@
-import 'package:clean_architect/core/env/config.dart';
+import 'dart:io';
+
+import 'package:get/get.dart';
 import 'package:sentry/sentry.dart';
+import 'package:device_info/device_info.dart';
 
-///[intialization] sentry
-final SentryClient _sentry = new SentryClient(
-  dsn: Config.getInstance().apiSentry,
-);
+import '../env/config.dart';
 
-///get device in [debug mode]
-bool get isInDebugMode {
-  bool inDebugMode = false;
-  assert(inDebugMode = true);
-  return inDebugMode;
-}
-
-class SentryException {
-  /// Reports [error] along with its [stackTrace] to Sentry.io.
-  Future<Null> reportError(dynamic error, dynamic stackTrace) async {
-    print('Caught error: $error');
-
-    /// Errors thrown in [development mode] are unlikely to be interesting. You can
-    /// check if you are running in dev mode using an assertion and omit sending
-    /// the report.
-    if (isInDebugMode) {
-      print(stackTrace);
-      print('In dev mode. Not sending report to Sentry.io.');
-      return;
-    }
-
-    print('Reporting to Sentry.io...');
-
-    final SentryResponse response = await _sentry.captureException(
-      exception: error,
-      stackTrace: stackTrace,
-    );
-
-    if (response.isSuccessful) {
-      print('❎ Success! Event ID: ${response.eventId}');
-    } else {
-      print('❎ Failed to report to Sentry.io: ${response.error}');
-    }
+Future<SentryEvent> sentryException({
+  required String loggerType,
+  required String message,
+  String? tags,
+  required dynamic extra,
+  String? baseUrl,
+  String? prefix,
+  String? requestMethod,
+  String? screen,
+  required dynamic exception,
+}) async {
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  late AndroidDeviceInfo androidInfo;
+  late IosDeviceInfo iosInfo;
+  if (Platform.isAndroid) {
+    androidInfo = await deviceInfo.androidInfo;
+  } else {
+    iosInfo = await deviceInfo.iosInfo;
   }
+
+  return SentryEvent(
+    exception: exception,
+    logger: loggerType,
+    environment: Config.getInstance().flavorName,
+    message:SentryMessage(message),
+    user: SentryUser(
+      id: 'id user',
+      username: 'username',
+      email: 'email',
+      extras: extra,
+    ),
+    breadcrumbs: [
+      Breadcrumb(
+        message: loggerType.contains('api') ? 'API Service' : 'UI Lifecycle',
+        timestamp: DateTime.now().toUtc(),
+        category: loggerType.contains('api') ? 'api.service' : 'ui.lifecycle',
+        type: loggerType,
+        data: loggerType.contains('api')
+            ? {'baseUrl': baseUrl, 'prefix': prefix, 'method': requestMethod}
+            : {'screen': screen, 'state': 'created'},
+        level: SentryLevel.info,
+      )
+    ],
+    contexts: Contexts(
+      operatingSystem: SentryOperatingSystem(
+        name: Platform.isAndroid ? 'Android' : 'IOS',
+        version: Platform.isAndroid
+            ? androidInfo.version.toString()
+            : iosInfo.systemVersion,
+        build: Platform.isAndroid ? androidInfo.model : iosInfo.model,
+        kernelVersion:
+            Platform.isAndroid ? androidInfo.hardware : iosInfo.utsname.version,
+        rooted: false,
+      ),
+      app: SentryApp(
+        name: 'Pasar Baja',
+        version: '1.42.0',
+        identifier: 'com.varx.cfs',
+        buildType: 'release',
+        startTime: DateTime.now().toUtc(),
+      ),
+      device: SentryDevice(
+        name: Platform.isAndroid ? androidInfo.product : iosInfo.name,
+        family: Platform.isAndroid
+            ? androidInfo.manufacturer
+            : iosInfo.identifierForVendor,
+        model: Platform.isAndroid ? androidInfo.model : iosInfo.model,
+        modelId: Platform.isAndroid ? androidInfo.id : iosInfo.utsname.nodename,
+        arch:
+            Platform.isAndroid ? androidInfo.hardware : iosInfo.utsname.machine,
+        brand: Platform.isAndroid ? androidInfo.brand : iosInfo.name,
+        manufacturer: Platform.isAndroid
+            ? androidInfo.manufacturer
+            : iosInfo.utsname.machine,
+        screenResolution: '${Get.width.toInt()} x ${Get.height.toInt()}',
+      ),
+    ),
+  );
 }

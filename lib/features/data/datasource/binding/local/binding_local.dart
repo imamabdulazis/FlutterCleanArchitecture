@@ -1,25 +1,22 @@
-import 'package:clean_architect/features/data/datasource/binding/binding_datasource.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/share_prefs.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
+
+import 'package:clean_architect/features/common/constants/prefs_constants.dart';
+
+import '../../../../domain/entities/request/sign_entity.dart';
+import '../../../../domain/entities/response/user_model_entity.dart';
+import '../../../models/request/sign_body.dart';
+import '../binding_datasource.dart';
+import '../cache/shared_prefs.dart';
 
 
 class BindingLocal implements BindingDataSource {
-  final SharedPrefs prefs;
+  final SharedPrefs? prefs;
 
   BindingLocal(this.prefs);
 
   @override
   Stream<bool> isAlreadyBinding() async* {
-    var status = prefs.isKeyExists(Constants.accessToken);
+    var status = prefs!.isKeyExists(Constants.keyAccessToken);
     yield status;
-  }
-
-  @override
-  Stream<String> getAccessToken() async* {
-    yield prefs.getString(Constants.accessToken);
   }
 
   @override

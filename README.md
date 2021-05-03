@@ -1,6 +1,6 @@
 <!-- This project created by imam abdul azis link : https://imamabdulazis.github.io/portofolio -->
 
-# [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) Flutter Project
+## [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) Flutter Project
 
 
 <p align="center">
@@ -11,6 +11,10 @@
 <img alt="last commit" src="https://img.shields.io/github/search/imamabdulazis/FlutterCleanArchitecture/flutter%20clean%20architecture?color=brightgreen"/>
 <img alt="last commit" src="https://img.shields.io/github/downloads/imamabdulazis/FlutterCleanArchitecture/total"/>
 </p>
+
+![CleanArchitecture](https://user-images.githubusercontent.com/39134128/101283060-f3708c80-380a-11eb-94de-199f0fc01739.jpg)
+
+
 <p>
 This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component. First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
 In this case I made a facebook clone with rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
@@ -27,20 +31,50 @@ In this case I made a facebook clone with rest API and you can clone it anytime 
 ## Introduction
 The dependency rule is the overriding rule that makes Clean Architecture work. It says that nothing in an inner circle should depend on anything in an outer circle. In particular, application and business rules shouldn’t depend on the UI, database, presenters, and so on. These rules allow us to build systems that are simpler to maintain, as changes in outer circles won’t impact inner ones.
 
+### Domain
+<p>The Domain module defines the business logic of the application. It is a module that is independent from the development platform i.e. it is written purely in the programming language and does not contain any elements from the platform. The reason for that is that Domain should only be concerned with the business logic of the application, not with the implementation details. This also allows for easy migration between platforms, should any issues arise.</p>
 
-## Getting Started.
+### Contents of Domain
+<h4>Domain is made up of several things.</h4>
 
-![CleanArchitecture](https://user-images.githubusercontent.com/39134128/101283060-f3708c80-380a-11eb-94de-199f0fc01739.jpg)
+### Entities
+✅   Enterprise-wide business rules </br>
+✅   Made up of classes that can contain methods </br>
+✅   Business objects of the application </br>
+✅   Used application-wide </br>
+✅   Least likely to change when something in the application changes </br>
+
+### Usecases
+✅   Application-specific business rules </br>
+✅   Encapsulate all the usecases of the application </br>
+✅   Orchestrate the flow of data throughout the app </br>
+✅   Should not be affected by any UI changes whatsoever </br>
+✅   Might change if the functionality and flow of application change </br>
+
+### Repositories
+✅   Abstract classes that define the expected functionality of outer layers </br>
+✅   Are not aware of outer layers, simply define expected functionality </br>
+✅   E.g. The Login usecase expects a Repository that has login functionality </br>
+✅   Passed to Usecases from outer layers </br>
+✅   Domain represents the inner-most layer. Therefore, it the most abstract layer in the architecture. </br>
 
 
+
+
+## Getting Started
 > ### Installing
 You can clone this library using :
 
 ```shell
-git clone https://github.com/imamabdulazis/Flutter-Clean-Architectur-Bloc-RxDart-Dio.git
+git clone https://github.com/imamabdulazis/FlutterCleanArchitecture.git
 ```
 
-#### Run Project
+>### Get depedencies
+```shell
+flutter clean; flutter pub get
+```
+
+>### Run Project
 ```shell
 flutter run --flavor development
 ```
@@ -54,8 +88,9 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 
 <br/>
 
-## Setup Environment (Development, Staging, Production) - Flavor
-<p>Before we start using clean patern clean architecture below, we must setting up environment architeture to separate between development, staging, and production part. Ok, let's do it.</p>
+## Flavor
+<h3>Setup Environment (Development, Staging, Production) - Flavor</h3>
+<p>Before we start using patern clean architecture below, we must setting up environment architeture to separate between development, staging, and production part. Ok, let's do it.</p>
 <p>
 In Flutter we separate environment is using flavor, like .env file in react native actualy
 </p>
@@ -124,7 +159,6 @@ last part don't forget clone scheme and rename like flavor name.
 <br/>
 ![Screen Shot 2021-01-28 at 5 20 39 PM](https://user-images.githubusercontent.com/39134128/106124000-30168f80-618d-11eb-99d7-02a3833d5bd9.png)
 
-## Flavor 
 ### Dart part
 >Config flavor file
 
@@ -327,36 +361,6 @@ class SentryException {
 <p>The Dependency Rule
 Source code dependencies only point inwards. This means inward modules are neither aware of nor dependent on outer modules. However, outer modules are both aware of and dependent on inner modules. Outer modules represent the mechanisms by which the business rules and policies (inner modules) operate. The more you move inward, the more abstraction is present. The outer you move the more concrete implementations are present. Inner modules are not aware of any classes, functions, names, libraries, etc.. present in the outer modules. They simply represent rules and are completely independent from the implementations.</p>
 
-## Layers
-### Domain
-<p>The Domain module defines the business logic of the application. It is a module that is independent from the development platform i.e. it is written purely in the programming language and does not contain any elements from the platform. The reason for that is that Domain should only be concerned with the business logic of the application, not with the implementation details. This also allows for easy migration between platforms, should any issues arise.</p>
-
-### Contents of Domain
-<h4>Domain is made up of several things.</h4>
-
-### Entities
-✅   Enterprise-wide business rules </br>
-✅   Made up of classes that can contain methods </br>
-✅   Business objects of the application </br>
-✅   Used application-wide </br>
-✅   Least likely to change when something in the application changes </br>
-
-### Usecases
-✅   Application-specific business rules </br>
-✅   Encapsulate all the usecases of the application </br>
-✅   Orchestrate the flow of data throughout the app </br>
-✅   Should not be affected by any UI changes whatsoever </br>
-✅   Might change if the functionality and flow of application change </br>
-
-### Repositories
-✅   Abstract classes that define the expected functionality of outer layers </br>
-✅   Are not aware of outer layers, simply define expected functionality </br>
-✅   E.g. The Login usecase expects a Repository that has login functionality </br>
-✅   Passed to Usecases from outer layers </br>
-✅   Domain represents the inner-most layer. Therefore, it the most abstract layer in the architecture. </br>
-
-<br/>
-
 ### Library Requirement
 <p>
 We need some library to make our apps is more simple code and clean.
@@ -382,7 +386,7 @@ This is some library and you can click to install from pub dev.
 ## Code Explanation
 <p>In some case we cannot implementation code by theary and just reading some tutorial without complete code. So here we go, I was build some code and improve some code from some tutorial and make it better I think :), I hope in this part can help us to make some simple Boilerplate.</p>
 
-### Usecase
+## Usecase
 
 <p>
 This is part more easy to handling some data error from network or other.
@@ -431,7 +435,7 @@ abstract class BaseDataSourceFactory<T> {
 enum DataSourceState { network, local }
 ```
 
-#### Datasource factory
+## Datasource factory
 ```dart
 class BindingDataSourceFactory
     extends BaseDataSourceFactory<BindingDataSource> {
@@ -462,11 +466,14 @@ class BindingDataSourceFactory
 
 <br/>
 
-## Resource String Component
-#### Handling component handling (i18n or Localization)
+## Internationalization
+<p>
+Internationalization is the design and development of a product, application or document content that enables easy localization for target audiences that vary in culture, region, or language. Internationalization is often written in English as i18n, where 18 is the number of letters between i and n in the English word
+</p>
+<h3> This component is handling i18n or Internationalization</h3>
 <p>
 In this part we must handling component string and prepare if our project 
-is using multiple language
+is using multiple language (in this case usin US and ID)
 </p>
 
 ```dart
@@ -534,7 +541,7 @@ output :
 <br/>
 <br/>
 
-> ### Credit
+> ## Credit
 
 This architecture is made with love:blush: and more things using great tutorials by great people, please visit this
 project credit, thank you.

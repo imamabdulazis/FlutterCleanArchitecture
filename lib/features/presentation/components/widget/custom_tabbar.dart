@@ -2,12 +2,12 @@ import 'package:clean_architect/features/presentation/components/utility/palette
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatelessWidget {
-  final List<IconData> icons;
-  final int selectedIndex;
-  final Function onTap;
+  final List<IconData>? icons;
+  final int? selectedIndex;
+  final Function? onTap;
 
   const CustomTabBar(
-      {Key key,
+      {Key? key,
         @required this.icons,
         @required this.selectedIndex,
         @required this.onTap})
@@ -19,7 +19,7 @@ class CustomTabBar extends StatelessWidget {
       indicator:const BoxDecoration(
           border:
           Border(top: BorderSide(color: Palette.facebookBlue, width: 3.0))),
-      tabs: icons
+      tabs: icons!
           .asMap()
           .map((i, e) => MapEntry(
           i,
@@ -34,7 +34,7 @@ class CustomTabBar extends StatelessWidget {
           )))
           .values
           .toList(),
-      onTap: onTap,
+      // onTap: ()=>onTap!,
     );
   }
 }

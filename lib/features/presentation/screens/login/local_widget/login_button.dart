@@ -3,20 +3,20 @@ import 'package:flutter/material.dart';
 
 class LoginButton extends StatelessWidget {
   const LoginButton({
-    Key key,
+    Key? key,
     this.title = 'Login',
     this.onPressed,
   }) : super(key: key);
-  
+
   final String title;
-  final Function onPressed;
+  final Function? onPressed;
 
   @override
   Widget build(BuildContext context) {
     final Size size = MediaQuery.of(context).size;
     return FlatButton(
       minWidth: size.width - 40,
-      onPressed: onPressed,
+      onPressed: () => onPressed!,
       padding: const EdgeInsets.all(15.0),
       color: Theme.of(context).primaryColor,
       shape: RoundedRectangleBorder(
