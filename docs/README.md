@@ -69,10 +69,32 @@ You can clone this library using :
 git clone https://github.com/imamabdulazis/FlutterCleanArchitecture.git
 ```
 
->### Get depedencies
+>### Depedencies
 ```shell
 flutter clean; flutter pub get
 ```
+
+<h3>Library Requirement</h3>
+<p>
+We need some library to make our apps is more simple code and clean.
+This is some library and you can click to install from pub dev.
+</p> 
+
+
+| Library                                                           | Usability                 |   Star    |
+| :-----------------------------------------------------------------|:--------------------------|:---------:|
+| [dartz](https://pub.dev/packages/dartz)                           | Data Handling             | [![Github Stars](https://img.shields.io/github/stars/spebbe/dartz?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/spebbe/dartz) |
+| [dio](https://pub.dev/packages/dio)                               | Http client               | [![Github Stars](https://img.shields.io/github/stars/flutterchina/dio?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/bloc)    |
+| [equatable](https://pub.dev/packages/equatable)                   | Getting data abstract     | [![Github Stars](https://img.shields.io/github/stars/felangel/equatable?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/equatable)    |
+| [flutter_bloc](https://pub.dev/packages/flutter_bloc)               | State management          | [![Github Stars](https://img.shields.io/github/stars/felangel/bloc.svg?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/bloc)      |
+| [get_it](https://pub.dev/packages/get_it)                         | Component Injector        | [![Github Stars](https://img.shields.io/github/stars/fluttercommunity/get_it?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/fluttercommunity/get_it)     |
+| [getx](https://pub.dev/packages/get)                              | Component handling        | [![Github Stars](https://img.shields.io/github/stars/jonataslaw/getx?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/jonataslaw/getx)       |
+| [pedantic](https://pub.dev/packages/pedantic)                     | Code formatting           | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
+| [rxdart](https://pub.dev/packages/rxdart)                         | Data handling async       | [![Github Stars](https://img.shields.io/github/stars/reactiveX/rxdart?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/ReactiveX/rxdart)     |
+| [logger](https://pub.dev/packages/logger)                         | Beautiful terminal log    | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
+| [shared_preferences](https://pub.dev/packages/shared_preferences) | Save data local storage   | [![Github Stars](https://img.shields.io/github/stars/flutter/plugins?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/flutter/plugins)     |
+
+<br/>
 
 >### Run Project
 ```shell
@@ -80,13 +102,12 @@ flutter run --flavor development
 ```
 You can choose another flavor staging or production or your custom flavor.
 
-<br/>
-
 NOTE :
 This project is using flutter version ```1.22.3``` and channel ```stable```
 > ⚠️ If you are get any problem to this project please feel free to create issue
 
 <br/>
+
 
 ## Flavor
 <h3>Setup Environment (Development, Staging, Production) - Flavor</h3>
@@ -95,7 +116,7 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 In Flutter we separate environment is using flavor, like .env file in react native actualy
 </p>
 
-### Android Part
+### Android
 We must setting in native code kotlin to make channel called name flavor.
 
 > MainActivity.kt
@@ -120,7 +141,7 @@ class MainActivity: FlutterActivity() {
 
 ```
 
-### iOS part
+### iOS
 In ios we must add native code too, this is example using swift code
 
 ```swift
@@ -159,7 +180,7 @@ last part don't forget clone scheme and rename like flavor name.
 <br/>
 ![Screen Shot 2021-01-28 at 5 20 39 PM](https://user-images.githubusercontent.com/39134128/106124000-30168f80-618d-11eb-99d7-02a3833d5bd9.png)
 
-### Dart part
+### Dart
 >Config flavor file
 
 ```dart
@@ -316,72 +337,97 @@ diagnose, fix, and optimize the performance of their code.
 ```dart
 import modele....
 
-///[intialization] sentry
-final SentryClient _sentry = new SentryClient(
-  dsn: Config.getInstance().apiSentry,
-);
+import 'dart:io';
 
-///get device in [debug mode]
-bool get isInDebugMode {
-  bool inDebugMode = false;
-  assert(inDebugMode = true);
-  return inDebugMode;
-}
+import 'package:get/get.dart';
+import 'package:sentry/sentry.dart';
+import 'package:device_info/device_info.dart';
 
-class SentryException {
-  /// Reports [error] along with its [stackTrace] to Sentry.io.
-  Future<Null> reportError(dynamic error, dynamic stackTrace) async {
-    print('Caught error: $error');
+import '../env/config.dart';
 
-    /// Errors thrown in [development mode] are unlikely to be interesting. You can
-    /// check if you are running in dev mode using an assertion and omit sending
-    /// the report.
-    if (isInDebugMode) {
-      print(stackTrace);
-      print('In dev mode. Not sending report to Sentry.io.');
-      return;
-    }
-
-    print('Reporting to Sentry.io...');
-
-    final SentryResponse response = await _sentry.captureException(
-      exception: error,
-      stackTrace: stackTrace,
-    );
-
-    if (response.isSuccessful) {
-      print('❎ Success! Event ID: ${response.eventId}');
-    } else {
-      print('❎ Failed to report to Sentry.io: ${response.error}');
-    }
+Future<SentryEvent> sentryException({
+  required String loggerType,
+  required String message,
+  String? tags,
+  required dynamic extra,
+  String? baseUrl,
+  String? prefix,
+  String? requestMethod,
+  String? screen,
+  required dynamic exception,
+}) async {
+  DeviceInfoPlugin deviceInfo = DeviceInfoPlugin();
+  late AndroidDeviceInfo androidInfo;
+  late IosDeviceInfo iosInfo;
+  if (Platform.isAndroid) {
+    androidInfo = await deviceInfo.androidInfo;
+  } else {
+    iosInfo = await deviceInfo.iosInfo;
   }
+
+  return SentryEvent(
+    exception: exception,
+    logger: loggerType,
+    environment: Config.getInstance().flavorName,
+    message:SentryMessage(message),
+    user: SentryUser(
+      id: 'id user',
+      username: 'username',
+      email: 'email',
+      extras: extra,
+    ),
+    breadcrumbs: [
+      Breadcrumb(
+        message: loggerType.contains('api') ? 'API Service' : 'UI Lifecycle',
+        timestamp: DateTime.now().toUtc(),
+        category: loggerType.contains('api') ? 'api.service' : 'ui.lifecycle',
+        type: loggerType,
+        data: loggerType.contains('api')
+            ? {'baseUrl': baseUrl, 'prefix': prefix, 'method': requestMethod}
+            : {'screen': screen, 'state': 'created'},
+        level: SentryLevel.info,
+      )
+    ],
+    contexts: Contexts(
+      operatingSystem: SentryOperatingSystem(
+        name: Platform.isAndroid ? 'Android' : 'IOS',
+        version: Platform.isAndroid
+            ? androidInfo.version.toString()
+            : iosInfo.systemVersion,
+        build: Platform.isAndroid ? androidInfo.model : iosInfo.model,
+        kernelVersion:
+            Platform.isAndroid ? androidInfo.hardware : iosInfo.utsname.version,
+        rooted: false,
+      ),
+      app: SentryApp(
+        name: 'Name of Apps',
+        version: '1.0.0',
+        identifier: 'com.apps.module',
+        buildType: 'release',
+        startTime: DateTime.now().toUtc(),
+      ),
+      device: SentryDevice(
+        name: Platform.isAndroid ? androidInfo.product : iosInfo.name,
+        family: Platform.isAndroid
+            ? androidInfo.manufacturer
+            : iosInfo.identifierForVendor,
+        model: Platform.isAndroid ? androidInfo.model : iosInfo.model,
+        modelId: Platform.isAndroid ? androidInfo.id : iosInfo.utsname.nodename,
+        arch:
+            Platform.isAndroid ? androidInfo.hardware : iosInfo.utsname.machine,
+        brand: Platform.isAndroid ? androidInfo.brand : iosInfo.name,
+        manufacturer: Platform.isAndroid
+            ? androidInfo.manufacturer
+            : iosInfo.utsname.machine,
+        screenResolution: '${Get.width.toInt()} x ${Get.height.toInt()}',
+      ),
+    ),
+  );
 }
 ```
 
 <p>The Dependency Rule
 Source code dependencies only point inwards. This means inward modules are neither aware of nor dependent on outer modules. However, outer modules are both aware of and dependent on inner modules. Outer modules represent the mechanisms by which the business rules and policies (inner modules) operate. The more you move inward, the more abstraction is present. The outer you move the more concrete implementations are present. Inner modules are not aware of any classes, functions, names, libraries, etc.. present in the outer modules. They simply represent rules and are completely independent from the implementations.</p>
-
-### Library Requirement
-<p>
-We need some library to make our apps is more simple code and clean.
-This is some library and you can click to install from pub dev.
-</p> 
-
-
-| Library                                                           | Usability                 |   Star    |
-| :-----------------------------------------------------------------|:--------------------------|:---------:|
-| [dartz](https://pub.dev/packages/dartz)                           | Data Handling             | [![Github Stars](https://img.shields.io/github/stars/spebbe/dartz?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/spebbe/dartz) |
-| [dio](https://pub.dev/packages/dio)                               | Http client               | [![Github Stars](https://img.shields.io/github/stars/flutterchina/dio?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/bloc)    |
-| [equatable](https://pub.dev/packages/equatable)                   | Getting data abstract     | [![Github Stars](https://img.shields.io/github/stars/felangel/equatable?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/equatable)    |
-| [flutter_hooks](https://pub.dev/packages/flutter_hooks)           | More simple code stateful | [![Github Stars](https://img.shields.io/github/stars/rrousselGit/flutter_hooks.svg?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/rrousselGit/flutter_hooks)    |
-| [flutter_bloc](https://pub.dev/packages/flutter_bloc)             | State management          | [![Github Stars](https://img.shields.io/github/stars/felangel/bloc.svg?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/felangel/bloc)      |
-| [get_it](https://pub.dev/packages/get_it)                         | Component Injector        | [![Github Stars](https://img.shields.io/github/stars/fluttercommunity/get_it?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/fluttercommunity/get_it)     |
-| [getx](https://pub.dev/packages/get)                              | Component handling        | [![Github Stars](https://img.shields.io/github/stars/jonataslaw/getx?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/jonataslaw/getx)       |
-| [pedantic](https://pub.dev/packages/pedantic)                     | Code formatting           | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
-| [rxdart](https://pub.dev/packages/rxdart)                         | Data handling async       | [![Github Stars](https://img.shields.io/github/stars/reactiveX/rxdart?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/ReactiveX/rxdart)     |
-| [logger](https://pub.dev/packages/logger)                         | Beautiful terminal log    | [![Github Stars](https://img.shields.io/github/stars/google/pedantic?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/google/pedantic)     |
-| [shared_preferences](https://pub.dev/packages/shared_preferences) | Save data local storage   | [![Github Stars](https://img.shields.io/github/stars/flutter/plugins?style=flat&logo=github&colorB=blue&label=stars)](https://github.com/flutter/plugins)     |
-
 
 ## Code Explanation
 <p>In some case we cannot implementation code by theary and just reading some tutorial without complete code. So here we go, I was build some code and improve some code from some tutorial and make it better I think :), I hope in this part can help us to make some simple Boilerplate.</p>
@@ -545,6 +591,8 @@ output :
 
 This architecture is made with love:blush: and more things using great tutorials by great people, please visit this
 project credit, thank you.
+
+>Happy codding 🖤
 
 [Flutter Community](https://flutter.dev/community)<br/>
 [Filled stack](https://www.filledstacks.com)<br/>

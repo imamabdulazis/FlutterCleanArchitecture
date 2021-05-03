@@ -61,9 +61,9 @@ Future<SentryEvent> sentryException({
         rooted: false,
       ),
       app: SentryApp(
-        name: 'Pasar Baja',
-        version: '1.42.0',
-        identifier: 'com.varx.cfs',
+        name: 'Name of Apps',
+        version: '1.0.0',
+        identifier: 'com.apps.module',
         buildType: 'release',
         startTime: DateTime.now().toUtc(),
       ),
