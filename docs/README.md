@@ -1,6 +1,6 @@
 <!-- This project created by imam abdul azis link : https://imamabdulazis.github.io/portofolio -->
 
-## [Clean Architecture](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html) Flutter Project
+<h1> Clean Architecture Flutter Project</h1>
 
 
 <p align="center">
@@ -14,14 +14,9 @@
 
 ![CleanArchitecture](https://user-images.githubusercontent.com/39134128/101283060-f3708c80-380a-11eb-94de-199f0fc01739.jpg)
 
-
-
-## [Documentation & Samples](https://imamabdulazis.github.io/FlutterCleanArchitecture) 
-
-<p>
-This is implementation clean architecture by Uncle Bob. We can implementation this project to make application with many module and component. First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
+This is implementation clean architecture by [Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html). We can implementation this project to make application with many module and component. First we must prepare some library for supporting our project like injector, api consume like dio and many other library we must intall it.
 In this case I made a facebook clone with rest API and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
-</p>
+
 
 <p>
     Clean Architecture combines a group of practices that produce systems with the following characteristics: </br>
@@ -31,7 +26,7 @@ In this case I made a facebook clone with rest API and you can clone it anytime 
 </p>
 
 
-## Introduction
+## **INTRODUCTION**
 The dependency rule is the overriding rule that makes Clean Architecture work. It says that nothing in an inner circle should depend on anything in an outer circle. In particular, application and business rules shouldn’t depend on the UI, database, presenters, and so on. These rules allow us to build systems that are simpler to maintain, as changes in outer circles won’t impact inner ones.
 
 ### Domain
@@ -75,7 +70,7 @@ git clone https://github.com/imamabdulazis/FlutterCleanArchitecture.git
 flutter clean; flutter pub get
 ```
 
-<h3>Library Requirement</h3>
+<h5>Library Requirement</h5>
 <p>
 We need some library to make our apps is more simple code and clean.
 This is some library and you can click to install from pub dev.
@@ -143,7 +138,9 @@ class MainActivity: FlutterActivity() {
 ```
 
 ### iOS
-In ios we must add native code too, this is example using swift code
+>AppDelegate.swift <br/>
+
+In ios we must add native code to call the **flavor schema** in xcode, this is example using swift code. 
 
 ```swift
  // flavor
@@ -161,7 +158,7 @@ In ios we must add native code too, this is example using swift code
     //!flavor
 ```
 
-then don't forget to setup info plist to make flavor visible when run
+then don't forget to setup **info.plist** to make flavor visible when run
 ```plist
 <dic>
 ...
@@ -182,7 +179,7 @@ last part don't forget clone scheme and rename like flavor name.
 ![Screen Shot 2021-01-28 at 5 20 39 PM](https://user-images.githubusercontent.com/39134128/106124000-30168f80-618d-11eb-99d7-02a3833d5bd9.png)
 
 ### Dart
->Config flavor file
+>flavor.dart
 
 ```dart
 class Config {
@@ -473,7 +470,8 @@ class NoParams extends Equatable {
 ### Datasource Option 
 <p>In this part we are enable to make option where data come from local or network</p>
 
->####Base Datasource (local or network or other)
+<h3>Base Datasource (local or network or other)</h3>
+
 ```dart
 abstract class BaseDataSourceFactory<T> {
   T createData(DataSourceState dataSourceState);
