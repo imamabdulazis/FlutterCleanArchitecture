@@ -57,7 +57,7 @@ The dependency rule is the overriding rule that makes Clean Architecture work. I
 ✅   Domain represents the inner-most layer. Therefore, it the most abstract layer in the architecture. </br>
 
 
-## Getting Started
+## *Getting Started*
 > ### Installing
 You can clone this library using :
 
@@ -105,7 +105,7 @@ This project is using flutter version ```1.22.3``` and channel ```stable```
 <br/>
 
 
-## Flavor
+## *Flavor*
 <h3>Setup Environment (Development, Staging, Production) - Flavor</h3>
 <p>Before we start using patern clean architecture below, we must setting up environment architeture to separate between development, staging, and production part. Ok, let's do it.</p>
 <p>
@@ -427,7 +427,7 @@ Future<SentryEvent> sentryException({
 <p>The Dependency Rule
 Source code dependencies only point inwards. This means inward modules are neither aware of nor dependent on outer modules. However, outer modules are both aware of and dependent on inner modules. Outer modules represent the mechanisms by which the business rules and policies (inner modules) operate. The more you move inward, the more abstraction is present. The outer you move the more concrete implementations are present. Inner modules are not aware of any classes, functions, names, libraries, etc.. present in the outer modules. They simply represent rules and are completely independent from the implementations.</p>
 
-## Code Explanation
+## *Code Explanation*
 <p>In some case we cannot implementation code by theary and just reading some tutorial without complete code. So here we go, I was build some code and improve some code from some tutorial and make it better I think :), I hope in this part can help us to make some simple Boilerplate.</p>
 
 ### Usecase
@@ -586,7 +586,7 @@ output :
 <br/>
 <br/>
 
-> ## Credit
+> ## *Credit*
 
 This architecture is made with love:blush: and more things using great tutorials by great people, please visit this
 project credit, thank you.
