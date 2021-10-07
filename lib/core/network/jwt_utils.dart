@@ -11,7 +11,7 @@ class JwtUtil {
     final payloadMap = json.decode(payload);
 
     if (payloadMap is! Map<String, dynamic>) {
-      throw Exception('payload inválido');
+      throw Exception('payload invalid');
     }
 
     return payloadMap;

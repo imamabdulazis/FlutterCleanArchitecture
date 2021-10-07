@@ -1,6 +1,6 @@
 class SignEmailBody {
-  final String username;
-  final String password;
+  final String? username;
+  final String? password;
 
   SignEmailBody({this.username, this.password});
 

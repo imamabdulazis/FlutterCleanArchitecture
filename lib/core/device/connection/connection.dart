@@ -1,7 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 
+ConnectivityResult? _connectivityResult;
 class ConnectionHelper {
-  static ConnectivityResult _connectivityResult;
 
   static Future _connect() async {
     _connectivityResult = await Connectivity().checkConnectivity();
@@ -9,8 +9,10 @@ class ConnectionHelper {
 
   static Future<bool> hasConnection() async {
     await _connect();
-    if (_connectivityResult == ConnectivityResult.mobile) return true;
-    if (_connectivityResult == ConnectivityResult.wifi) return true;
+    if (_connectivityResult == ConnectivityResult.mobile) 
+      return true;
+    if (_connectivityResult == ConnectivityResult.wifi) 
+    return true;
     return false;
   }
 

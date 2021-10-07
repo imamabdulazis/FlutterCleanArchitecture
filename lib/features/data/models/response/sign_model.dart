@@ -1,10 +1,10 @@
-import 'package:clean_architect/features/domain/entities/sign_entity.dart';
+import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
 import 'package:flutter/foundation.dart';
 
-class SignEmailModel extends SignEmailEntity {
+class SignEmailModel extends SignModelEntity {
   SignEmailModel({
-    @required String accessToken,
-    @required String refreshToken,
+    @required String? accessToken,
+    @required String? refreshToken,
   }) : super(
           accessToken: accessToken,
           refreshToken: refreshToken,

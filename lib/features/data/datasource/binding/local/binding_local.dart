@@ -1,39 +1,31 @@
-import 'package:clean_architect/features/data/datasource/binding/binding_datasource.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/binding_cache.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/constants.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/user_entity.dart';
+
+import 'package:clean_architect/features/common/constants/prefs_constants.dart';
+
+import '../../../../domain/entities/request/sign_entity.dart';
+import '../../../../domain/entities/response/user_model_entity.dart';
+import '../../../models/request/sign_body.dart';
+import '../binding_datasource.dart';
+import '../cache/shared_prefs.dart';
 
 
 class BindingLocal implements BindingDataSource {
-  final SharedPrefs prefs;
+  final SharedPrefs? prefs;
 
   BindingLocal(this.prefs);
 
   @override
-  Stream<bool> cacheAccessToken(String token) {
-    throw UnimplementedError();
-  }
-
-  @override
-  Stream<String> getAccessToken() async* {
-    yield prefs.getString(Constants.accessToken);
-  }
-
-  @override
-  Future<UserEntity> getAccount(int userId) {
-    throw UnimplementedError();
-  }
-
-  @override
   Stream<bool> isAlreadyBinding() async* {
-    var status = prefs.isKeyExists(Constants.accessToken);
+    var status = prefs!.isKeyExists(Constants.keyAccessToken);
     yield status;
   }
 
   @override
-  Future<SignEmailEntity> signWithEmail(SignEmailBody signEmailBody) {
+  Stream<UserModelEntity> getAccount(int userId) {
+    throw UnimplementedError();
+  }
+
+  @override
+  Stream<SignModelEntity> signWithEmail(SignEmailBody signEmailBody) {
     throw UnimplementedError();
   }
 }

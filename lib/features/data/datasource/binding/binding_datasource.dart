@@ -1,15 +1,16 @@
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/user_entity.dart';
+import '../../../domain/entities/request/sign_entity.dart';
+import '../../../domain/entities/response/user_model_entity.dart';
+import '../../models/request/sign_body.dart';
 
+///declare [resource] datasource binding to [remote] and [local]
 abstract class BindingDataSource {
-  Future<SignEmailEntity> signWithEmail(SignEmailBody signEmailBody);
-
-  Future<UserEntity> getAccount(int userId);
-
+  ///[check] is user already [login]
   Stream<bool> isAlreadyBinding();
 
-  Stream<bool> cacheAccessToken(String token);
+  ///do sign in user
+  Stream<SignModelEntity> signWithEmail(SignEmailBody signEmailBody);
 
-  Stream<String> getAccessToken();
+  ///get [account] user
+  Stream<UserModelEntity> getAccount(int userId);
+
 }

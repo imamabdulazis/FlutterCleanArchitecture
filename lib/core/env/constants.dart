@@ -1,9 +1,10 @@
 enum Environment { DEV, STAG, PROD }
 
-//credit : https://medium.com/meeve/build-variants-in-flutter-for-multiple-backend-environments-7e139128949b
-//NOTE : build multiple application
-class Constants {
-  static Map<String, dynamic> _config;
+///credit : https://medium.com/meeve/build-variants-in-flutter-for-multiple-backend-environments-7e139128949b
+///NOTE : build [multiple] application
+
+class ConstantsServer {
+  static Map<String, dynamic>? _config;
 
   static void setEnvironment(Environment env) {
     switch (env) {
@@ -20,15 +21,15 @@ class Constants {
   }
 
   static get serverOne {
-    return _config[_Config.SERVER_ONE];
+    return _config![_Config.SERVER_ONE];
   }
 
   static get serverTwo {
-    return _config[_Config.SERVER_TWO];
+    return _config![_Config.SERVER_TWO];
   }
 
   static get serverThree {
-    return _config[_Config.WHERE_AM_I];
+    return _config![_Config.WHERE_AM_I];
   }
 }
 

@@ -1,59 +1,89 @@
-import 'package:clean_architect/core/network/interceptor.dart';
-import 'package:dio/dio.dart';
+import 'dart:convert';
 
-enum HttpError {
-  dataNotFound,
-  badRequest,
-  notFound,
-  serverError,
-  unauthorized,
-  forbidden,
-  invalidData
-}
+import 'package:clean_architect/features/data/datasource/binding/cache/shared_prefs.dart';
+import 'package:connectivity/connectivity.dart';
+import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
+
+import '../../features/common/constants/prefs_constants.dart';
+import '../env/config.dart';
+import 'http_retrier.dart';
 
 class HttpClient {
-  Dio _client;
+  HttpClient({required this.config, required this.prefs});
+  
+  late Config config;
+  late SharedPrefs prefs;
 
-  HttpClient() {
-    _client = Dio();
-    _client.interceptors.add(LoggingInterceptors(_client));
+  Dio get dio => _getDio();
+
+  Dio _getDio() {
+    final options = BaseOptions(
+      baseUrl: config.apiBaseUrl!,
+      connectTimeout: 20000,
+      receiveTimeout: 30000,
+      receiveDataWhenStatusError: true,
+      headers: {'isToken': prefs.isKeyExists(Constants.keyAccessToken)},
+    );
+    final dynamic dio = Dio(options);
+    dio.interceptors.addAll(<Interceptor>[_loggingInterceptor()]);
+    dio.interceptors.add(
+      RetryOnConnectionChangeInterceptor(
+        requestRetrier: DioConnectivityRequestRetrier(
+          dio: Dio(),
+          connectivity: Connectivity(),
+        ),
+      ),
+    );
+
+    return dio;
   }
 
-  //! NOTE :Don't Format Doc
-  Future<Response> get(String url) => _client.get(url);
+  Interceptor _loggingInterceptor() {
+    return InterceptorsWrapper(onRequest: (options, handler) {
+      final storageToken = prefs.getString(Constants.keyAccessToken);
 
-  Future<Response> post(String url, {dynamic body}) =>
-      _client
-          .post(url, data: body)
-          .then((value) => _handleResponse(value.data));
+      print("--> ${options.method} ${"" + (options.baseUrl) + (options.path)}");
+      print('Headers:');
+      options.headers.forEach((k, v) => print('$k: $v'));
+      print('queryParameters:');
+      options.queryParameters.forEach((k, v) => print('$k: $v'));
+      print(
+        "--> END ${options.method}",
+      );
 
-  Future<Response> put(String url, {dynamic body}) =>
-      _client
-          .put(url, data: body)
-          .then((value) => _handleResponse(value.data));
+      if (options.headers.containsKey('isToken')) {
+        options.headers.remove('isToken');
+        options.headers.addAll({'Authorization': 'Bearer $storageToken'});
+      }
 
-  Future<Response> delete(String url, {dynamic body}) =>
-      _client
-          .delete(url).then((value) => _handleResponse(value.data))
-          .then((value) => _handleResponse(value.data));
+      // Do something before request is sent
+      debugPrint('\n'
+          '-- headers --\n'
+          '${options.headers.toString()} \n'
+          '-- request --\n -->body'
+          '${options.data} \n'
+          '');
 
-  //NOTE : return status code
-  dynamic _handleResponse(Response response) {
-    switch (response.statusCode) {
-      case 200:
-        return response.data.isEmpty ? null : response.data;
-      case 204:
-       throw HttpError.dataNotFound;
-      case 400:
-        throw HttpError.badRequest;
-      case 401:
-        throw HttpError.unauthorized;
-      case 403:
-        throw HttpError.forbidden;
-      case 404:
-        throw HttpError.notFound;
-      default:
-        throw HttpError.serverError;
-    }
+      return handler.next(options); //continue
+      // If you want to resolve the request with some custom data，
+      // you can return a `Response` object or return `dio.resolve(data)`.
+      // If you want to reject the request with a error message,
+      // you can return a `DioError` object or return `dio.reject(errMsg)`
+    }, onResponse: (response, handler) {
+      // Do something with response data
+      debugPrint('\n'
+          'Response : ${response.requestOptions.uri} \n'
+          '-- headers --\n'
+          '${response.headers.toString()} \n'
+          '-- response --\n'
+          '${jsonEncode(response.data)} \n'
+          '');
+
+      return handler.next(response); // continue
+    }, onError: (DioError error, handler) {
+      // Do something with response error
+      return handler.next(error); //continue
+    });
   }
 }
