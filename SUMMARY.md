@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Clean Architecture Flutter Project](README.md)
+* [Introduction](README.md)
 * [Review Aplication](review-application.md)
 * [iOS](ios/README.md)
   * [Runner](ios/runner/README.md)
