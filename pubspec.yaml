@@ -13,60 +13,52 @@ dependencies:
     sdk: flutter
   flutter_localizations:
     sdk: flutter
-  bloc_test: ^8.0.0
-  cached_network_image: ^2.5.0
-  connectivity: ^2.0.2
-  cupertino_icons: ^1.0.0
-  dartz: ^0.10.0-nullsafety.1
-  device_info: ^2.0.0
-  dio: ^4.0.0-beta7
-  equatable: ^2.0.0
-  firebase_core: any
-  firebase_messaging: any
-  flutter_bloc: ^7.0.0
-  flutter_bluetooth_basic: ^0.1.5
+  bloc_test: ^9.0.1
+  cached_network_image: ^3.1.0+1
+  connectivity: ^3.0.6
+  cupertino_icons: ^1.0.4
+  dartz: ^0.10.0
+  device_info: ^2.0.3
+  dio: ^4.0.4
+  equatable: ^2.0.3
+  firebase_core: ^1.10.0
+  firebase_messaging: ^11.1.0
+  flutter_bloc: ^8.0.0
+  # flutter_bluetooth_basic: ^0.1.7
   flutter_feather_icons: ^2.0.0+1
-  flutter_local_notifications: ^5.0.0+1
-  material_design_icons_flutter: ^4.0.5955
-  flutter_secure_storage: ^4.1.0
-  get: ^4.1.4
-  get_it: ^6.0.0
-  geocoder: ^0.2.1
-  geolocator: 
-  google_maps_flutter: 
-  hive: ^2.0.3
-  hive_flutter: ^1.0.0
-  image: any
-  image_picker: ^0.7.4
-  infinite_scroll_pagination: ^3.0.1
+  flutter_local_notifications: ^9.1.4
+  material_design_icons_flutter: ^5.0.6295
+  flutter_secure_storage: ^5.0.2
+  get: ^4.3.8
+  get_it: ^7.2.0
+  # geocoder: ^0.2.1
+  geolocator: ^7.7.1 
+  google_maps_flutter: ^2.1.1 
+  hive: ^2.0.4
+  hive_flutter: ^1.1.0
+  image: ^3.0.8
+  image_picker: ^0.8.4+4
+  infinite_scroll_pagination: ^3.1.0
   intl: ^0.17.0
-  json_annotation: any
-  logger: any
-  meta: ^1.2.4
-  package_info: ^0.4.3+4
-  path_provider: ^2.0.1
-  permission_handler: any
-  rxdart: ^0.23.1
-  sentry_flutter: ^5.0.0
-  shared_preferences: ^2.0.5
+  json_annotation: ^4.3.0
+  logger: ^1.1.0
+  meta: ^1.7.0
+  package_info: ^2.0.2
+  path_provider: ^2.0.7
+  permission_handler: ^8.3.0
+  rxdart: ^0.26.0
+  sentry_flutter: ^6.1.2
+  shared_preferences: ^2.0.9
 
 dev_dependencies:
-  flutter_driver:
-    sdk: flutter
   flutter_test:
     sdk: flutter
-  build_runner: ^1.11.1
-  json_serializable: any
-  hive_generator: any
-  lint: ^1.5.3
-  mockito: any
-  pedantic: ^1.11.0
-  test: any
+    
+  flutter_lints: ^1.0.4
 
 # this part if some libary nothing yet support null safety (read https://dart.dev/null-safety)
 dependency_overrides:
-  crypto: ^3.0.1
-  connectivity: ^3.0.3
+  # paste this part if any lib not update yet
 
 flutter:
 

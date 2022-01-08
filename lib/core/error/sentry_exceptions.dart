@@ -27,10 +27,10 @@ Future<SentryEvent> sentryException({
   }
 
   return SentryEvent(
-    exception: exception,
+    exceptions: exception,
     logger: loggerType,
     environment: Config.getInstance().flavorName,
-    message:SentryMessage(message),
+    message: SentryMessage(message),
     user: SentryUser(
       id: 'id user',
       username: 'username',

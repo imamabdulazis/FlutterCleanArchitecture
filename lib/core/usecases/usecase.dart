@@ -16,7 +16,6 @@ abstract class UseCase<Type, Params> {
       if (error is Failure) {
         failure = error;
       } else if (error is DioError) {
-        ///[NOTE] : get [Network] Exception [dio]
         failure = ServerFailure(error: error);
       } else {
         failure = AnotherFailure(error: "$error");

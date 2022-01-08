@@ -8,9 +8,7 @@ import 'package:get/get.dart';
 
 import 'core/env/config.dart';
 import 'core/env/flavor.dart';
-import 'core/error/sentry_exceptions.dart';
 import 'features/di/injection_container.dart' as di;
-import 'features/presentation/components/utility/app_theme.dart';
 import 'features/presentation/components/utility/app_theme.dart';
 import 'features/presentation/components/utility/observer.dart';
 import 'features/presentation/screens/home/home_screen.dart';
@@ -37,12 +35,15 @@ Future<void> main() async {
   /// [run apps] with catch error
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
-    Bloc.observer = MyBlocObserver();
+    BlocOverrides.runZoned(
+        () => {
+              runApp(MyApp()),
+            },
+        blocObserver: MyBlocObserver());
     await getFlavorSetting();
     await di.init();
     await disableLendscapeMode();
     disableErrorWidget();
-    runApp(MyApp());
 
     ///[console] flavor running
     if (!kReleaseMode) {

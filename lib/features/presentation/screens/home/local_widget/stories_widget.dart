@@ -51,7 +51,7 @@ class StoriesWidget extends StatelessWidget {
 }
 
 class _StoryCard extends StatelessWidget {
-  final bool isAddStory;
+  final bool? isAddStory;
   final UserModel? currentUser;
   final StoryModel? story;
 
@@ -77,7 +77,7 @@ class _StoryCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(12.0),
                 child: CachedNetworkImage(
                     imageUrl:
-                        isAddStory ? currentUser!.imageUrl : story!.imageUrl,
+                        isAddStory! ? currentUser!.imageUrl! : story!.imageUrl!,
                     height: double.infinity,
                     width: 110.0,
                     fit: BoxFit.cover),
@@ -89,7 +89,7 @@ class _StoryCard extends StatelessWidget {
                     gradient: Palette.storyGradient,
                     borderRadius: BorderRadius.circular(12.0)),
               ),
-              if (isAddStory)
+              if (isAddStory != null)
                 const SizedBox()
               else
                 Positioned(
@@ -104,7 +104,7 @@ class _StoryCard extends StatelessWidget {
                 bottom: 0.0,
                 left: 0.0,
                 right: 0.0,
-                child: isAddStory
+                child: isAddStory != null
                     ? Container(
                         height: 85,
                         width: 55,
@@ -140,7 +140,7 @@ class _StoryCard extends StatelessWidget {
                         ),
                       ),
               ),
-              if (!isAddStory)
+              if (!isAddStory!)
                 const SizedBox()
               else
                 Positioned(

@@ -37,9 +37,7 @@ class NotificationService {
   ///
   static const AndroidNotificationDetails androidNotificationDetails =
       AndroidNotificationDetails(
-          MyNotificationConstant.channelId,
-          MyNotificationConstant.channelName,
-          MyNotificationConstant.channelDescription,
+          MyNotificationConstant.channelId, MyNotificationConstant.channelName,
           importance: Importance.max,
           priority: Priority.high,
           ticker: 'ticker',
@@ -125,7 +123,7 @@ class NotificationService {
       if (payload != null) {
         debugPrint('notification payload: $payload');
       }
-      selectNotificationSubject.add(payload);
+      selectNotificationSubject.add(payload!);
     });
 
     /// * set foreground component show on notification
@@ -207,7 +205,7 @@ class NotificationService {
   }
 
   /// * cancel all notification [clear notification]
-  /// 
+  ///
   Future<void> cancelAllNotification() async {
     await notificationsPlugin.cancelAll();
   }
