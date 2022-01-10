@@ -1,7 +1,7 @@
 name: clean_architect
 description: A new Flutter project.
 
-publish_to: 'none' 
+publish_to: "none"
 
 version: 1.0.0+1
 
@@ -32,8 +32,8 @@ dependencies:
   get: ^4.3.8
   get_it: ^7.2.0
   # geocoder: ^0.2.1
-  geolocator: ^7.7.1 
-  google_maps_flutter: ^2.1.1 
+  geolocator: ^7.7.1
+  google_maps_flutter: ^2.1.1
   hive: ^2.0.4
   hive_flutter: ^1.1.0
   image: ^3.0.8
@@ -46,14 +46,14 @@ dependencies:
   package_info: ^2.0.2
   path_provider: ^2.0.7
   permission_handler: ^8.3.0
-  rxdart: ^0.26.0
+  rxdart: ^0.27.3
   sentry_flutter: ^6.1.2
   shared_preferences: ^2.0.9
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-    
+
   flutter_lints: ^1.0.4
 
 # this part if some libary nothing yet support null safety (read https://dart.dev/null-safety)
@@ -61,7 +61,6 @@ dependency_overrides:
   # paste this part if any lib not update yet
 
 flutter:
-
   uses-material-design: true
 
   assets:

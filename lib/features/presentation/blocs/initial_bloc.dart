@@ -20,7 +20,7 @@ class SplashBloc {
     bindOut(ResultState.setLoading());
     _checkBindStatusUsecase
         .execute(NoParams())
-        .delay(const Duration(milliseconds: 3000))
+        .delay(const Duration(milliseconds: 1000))
         .listen((event) {
       event.fold((error) {
         return bindOut(ResultState.setError(error));

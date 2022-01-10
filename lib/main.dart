@@ -41,10 +41,11 @@ Future<void> main() async {
     disableErrorWidget();
 
     BlocOverrides.runZoned(
-        () => {
-              runApp(MyApp()),
-            },
-        blocObserver: MyBlocObserver());
+      () => {
+        runApp(MyApp()),
+      },
+      blocObserver: MyBlocObserver(),
+    );
 
     ///[console] flavor running
     if (!kReleaseMode) {
