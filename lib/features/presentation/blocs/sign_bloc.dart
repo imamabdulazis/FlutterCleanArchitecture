@@ -1,5 +1,1 @@
-
-
-class SignBloc {
-
-}
+class SignBloc {}

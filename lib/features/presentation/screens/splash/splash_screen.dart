@@ -8,26 +8,35 @@ import '../../blocs/initial_bloc.dart';
 import '../login/login_screen.dart';
 import '../navigation/navigation.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   static const String route = '/SplashScreen';
 
   @override
-  Widget build(BuildContext context) {
-    final bloc = sl<SplashBloc>();
+  State<SplashScreen> createState() => _SplashScreenState();
+}
 
-    print('build splash screen');
+class _SplashScreenState extends State<SplashScreen> {
+  final bloc = sl<SplashBloc>();
+
+  @override
+  void initState() {
     bloc.bindStatusStream.listen((event) {
+      print('build splash screen');
       print('listen ${event.data}');
       print(event);
       if (event.state == CurrentState.SUCCESS) {
         if (event.data != null) {
-          Get.offNamed(LoginScreen.route);
+          Get.offAndToNamed(LoginScreen.route);
         } else {
           Get.off(NavScreen());
         }
       }
     });
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(

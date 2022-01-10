@@ -25,6 +25,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     InputEmail(),
+                    const SizedBox(height: 10),
                     InputPassword(),
                     const SizedBox(height: 20),
                     ButtonContain(

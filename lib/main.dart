@@ -110,7 +110,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       navigatorObservers: <NavigatorObserver>[routeObserver],
       theme: CreateTheme.lightTheme,
-      initialRoute: SplashScreen.route,
+      initialRoute: LoginScreen.route,
       getPages: <GetPage>[
         GetPage(name: SplashScreen.route, page: () => SplashScreen()),
         GetPage(name: LoginScreen.route, page: () => LoginScreen()),
