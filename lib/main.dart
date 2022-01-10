@@ -35,15 +35,16 @@ Future<void> main() async {
   /// [run apps] with catch error
   runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+    await getFlavorSetting();
+    await di.init();
+    await disableLendscapeMode();
+    disableErrorWidget();
+
     BlocOverrides.runZoned(
         () => {
               runApp(MyApp()),
             },
         blocObserver: MyBlocObserver());
-    await getFlavorSetting();
-    await di.init();
-    await disableLendscapeMode();
-    disableErrorWidget();
 
     ///[console] flavor running
     if (!kReleaseMode) {
@@ -108,9 +109,9 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: true,
       navigatorObservers: <NavigatorObserver>[routeObserver],
       theme: CreateTheme.lightTheme,
-      initialRoute: '/',
+      initialRoute: SplashScreen.route,
       getPages: <GetPage>[
-        GetPage(name: '/', page: () => SplashScreen()),
+        GetPage(name: SplashScreen.route, page: () => SplashScreen()),
         GetPage(name: LoginScreen.route, page: () => LoginScreen()),
         GetPage(name: HomeScreen.route, page: () => HomeScreen()),
       ],

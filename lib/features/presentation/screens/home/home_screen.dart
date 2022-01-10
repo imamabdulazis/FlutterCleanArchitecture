@@ -7,7 +7,7 @@ import 'local_widget/rooms_widget.dart';
 import 'local_widget/stories_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  static const String route = "HomeScreen";
+  static const String route = "/HomeScreen";
 
   @override
   Widget build(BuildContext context) {

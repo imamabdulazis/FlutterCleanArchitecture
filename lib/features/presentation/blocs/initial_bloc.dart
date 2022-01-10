@@ -16,7 +16,7 @@ class SplashBloc {
   Stream<ResultState<bool>> get bindStatusStream => _bindStatusOut.stream;
 
   void checkBindStatus() {
-    print('method checkBindStatus');
+    print('method check binding status');
     bindOut(ResultState.setLoading());
     _checkBindStatusUsecase
         .execute(NoParams())

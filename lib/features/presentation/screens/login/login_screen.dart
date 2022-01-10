@@ -10,7 +10,7 @@ import 'local_widget/header.dart';
 import 'local_widget/input_password.dart';
 
 class LoginScreen extends StatelessWidget {
-  static const String route = "LoginScreen";
+  static const String route = "/LoginScreen";
 
   @override
   Widget build(BuildContext context) {

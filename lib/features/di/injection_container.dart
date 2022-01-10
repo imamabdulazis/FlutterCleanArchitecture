@@ -23,13 +23,13 @@ Future<void> init() async {
   /// [Flavor]
   /// [Implementation] flavor with different [Environm Env] both ios and android
   sl.registerLazySingleton(() => config);
+  sl.registerLazySingleton(() => prefs);
 
   ///network
   sl.registerLazySingleton(() => sl<HttpClient>().dio);
   sl.registerSingleton(HttpClient(config: sl(), prefs: sl()));
 
   ///data [Binding]
-  sl.registerLazySingleton(() => prefs);
   sl.registerFactory(() => BindingLocal(sl()));
   sl.registerFactory(() => BindingRemote(sl()));
 

@@ -9,7 +9,7 @@ import '../login/login_screen.dart';
 import '../navigation/navigation.dart';
 
 class SplashScreen extends StatelessWidget {
-  static const String route = 'SplashScreen';
+  static const String route = '/SplashScreen';
 
   @override
   Widget build(BuildContext context) {
