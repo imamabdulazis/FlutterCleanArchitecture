@@ -4,7 +4,7 @@ class HeaderLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Image.asset(
-      'assets/img/header.jpeg',
+      'assets/img/header-login.jpeg',
       fit: BoxFit.cover,
     );
   }

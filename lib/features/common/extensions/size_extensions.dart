@@ -1,5 +1,5 @@
 
-import 'package:clean_architect/features/common/pageutil/pageutil.dart';
+import '../pageutil/pageutil.dart';
 
 ///define size for screen (width, height and sp for fonts)
 extension SizeExtension on num {

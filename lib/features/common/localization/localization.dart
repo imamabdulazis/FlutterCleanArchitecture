@@ -6,12 +6,12 @@ import 'package:flutter/services.dart';
 import '../constants/language_constants.dart';
 
 class AppLocalizations {
-  final Locale _locale;
-
   AppLocalizations(
     this._locale, {
     this.isTest = false,
   });
+
+  final Locale _locale;
 
   bool isTest;
 
@@ -66,7 +66,8 @@ class AppLocalizationDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override
   Future<AppLocalizations> load(Locale locale) async {
-    AppLocalizations localizations = AppLocalizations(locale, isTest: isTest);
+    final AppLocalizations localizations =
+        AppLocalizations(locale, isTest: isTest);
     if (isTest) {
       await localizations.loadTest(locale);
     } else {

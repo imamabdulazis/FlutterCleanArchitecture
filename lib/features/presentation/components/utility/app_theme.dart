@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/presentation/components/utility/typography.dart';
+import 'typography.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'palette.dart';

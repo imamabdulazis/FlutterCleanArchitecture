@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'features/common/constants/translation_constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -14,6 +15,7 @@ import 'features/presentation/components/utility/observer.dart';
 import 'features/presentation/screens/home/home_screen.dart';
 import 'features/presentation/screens/login/login_screen.dart';
 import 'features/presentation/screens/splash/splash_screen.dart';
+import 'features/common/extensions/string_extensions.dart';
 
 ///[get debug mode]
 bool get isInDebugMode {
@@ -37,15 +39,17 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await getFlavorSetting();
     await di.init();
-    await disableLendscapeMode();
+    // await disableLendscapeMode();
     disableErrorWidget();
 
-    BlocOverrides.runZoned(
-      () => {
-        runApp(MyApp()),
-      },
-      blocObserver: MyBlocObserver(),
-    );
+    SystemChrome.setPreferredOrientations([]).then((_) {
+      BlocOverrides.runZoned(
+        () => {
+          runApp(MyApp()),
+        },
+        blocObserver: MyBlocObserver(),
+      );
+    });
 
     ///[console] flavor running
     if (!kReleaseMode) {
@@ -75,13 +79,13 @@ void disableErrorWidget() {
   }
 }
 
-/// [disable landscape] model
-Future<void> disableLendscapeMode() async {
-  await SystemChrome.setPreferredOrientations(([
-    DeviceOrientation.portraitUp,
-    DeviceOrientation.portraitDown,
-  ]));
-}
+/// [disable landscape] model [deprecated] already move to runZoned
+// Future<void> disableLendscapeMode() async {
+//   await SystemChrome.setPreferredOrientations(([
+//     DeviceOrientation.portraitUp,
+//     DeviceOrientation.portraitDown,
+//   ]));
+// }
 
 ///[environment] configuration
 Future<FlavorSettings> getFlavorSetting() async {
@@ -106,7 +110,7 @@ class MyApp extends StatelessWidget {
     final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
     return GetMaterialApp(
-      title: 'Facebook',
+      title: R.facebook.t(context)!,
       debugShowCheckedModeBanner: true,
       navigatorObservers: <NavigatorObserver>[routeObserver],
       theme: CreateTheme.lightTheme,

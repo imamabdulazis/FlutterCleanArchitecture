@@ -1,12 +1,12 @@
-import 'package:clean_architect/features/data/models/response/user_model.dart';
-import 'package:clean_architect/features/presentation/components/utility/palette.dart';
-import 'package:clean_architect/features/presentation/screens/home/local_widget/profile_avatar.dart';
+import '../../../../data/models/response/user_model.dart';
+import '../../../components/utility/palette.dart';
+import 'profile_avatar.dart';
 import 'package:flutter/material.dart';
 
 class RoomsWidget extends StatelessWidget {
-  final List<UserModel> onlineUsers;
-
   const RoomsWidget({Key? key, required this.onlineUsers}) : super(key: key);
+
+  final List<UserModel> onlineUsers;
 
   @override
   Widget build(BuildContext context) {

@@ -1,7 +1,7 @@
-import 'package:clean_architect/core/error/failure.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
+import '../../../core/error/failure.dart';
+import '../../data/models/request/sign_body.dart';
+import '../entities/request/sign_entity.dart';
+import '../entities/response/user_model_entity.dart';
 import 'package:dartz/dartz.dart';
 
 abstract class UserRepository {

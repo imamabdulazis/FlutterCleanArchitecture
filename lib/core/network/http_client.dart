@@ -1,11 +1,11 @@
 import 'dart:convert';
 
-import 'package:clean_architect/features/data/datasource/binding/cache/shared_prefs.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
 import '../../features/common/constants/prefs_constants.dart';
+import '../../features/data/datasource/binding/cache/shared_prefs.dart';
 import '../env/config.dart';
 import 'http_retrier.dart';
 

@@ -34,6 +34,7 @@ class ConstantsServer {
 }
 
 //config multiple server
+// ignore: avoid_classes_with_only_static_members
 class _Config {
   static const SERVER_ONE = "SERVER_ONE";
   static const SERVER_TWO = "SERVER_TWO";
@@ -52,7 +53,7 @@ class _Config {
   };
 
   static Map<String, dynamic> prodConstants = {
-    SERVER_ONE: "https://itsallwidgets.com/",
+    SERVER_ONE: 'https://itsallwidgets.com/',
     SERVER_TWO: "https://flutter.io/",
     WHERE_AM_I: "prod"
   };

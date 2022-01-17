@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:clean_architect/features/common/constants/assets_constants.dart';
 import 'package:device_info/device_info.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -11,6 +10,7 @@ import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 // ignore: import_of_legacy_library_into_null_safe
 import 'package:rxdart/subjects.dart';
 
+import '../../../features/common/constants/assets_constants.dart';
 import '../../../features/presentation/components/utility/palette.dart';
 import '../plugins/notification_plugin.dart';
 

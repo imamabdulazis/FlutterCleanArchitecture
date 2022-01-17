@@ -1,5 +1,5 @@
-import 'package:clean_architect/features/presentation/components/utility/palette.dart';
-import 'package:clean_architect/features/presentation/components/widget/button_circle.dart';
+import '../../../components/utility/palette.dart';
+import '../../../components/widget/button_circle.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 

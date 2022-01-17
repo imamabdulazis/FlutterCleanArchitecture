@@ -1,8 +1,8 @@
-import 'package:clean_architect/core/error/failure.dart';
-import 'package:clean_architect/core/usecases/usecase.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
-import 'package:clean_architect/features/domain/repositories/user_repository.dart';
+import '../../../core/error/failure.dart';
+import '../../../core/usecases/usecase.dart';
+import '../../data/models/request/sign_body.dart';
+import '../entities/request/sign_entity.dart';
+import '../repositories/user_repository.dart';
 import 'package:dartz/dartz.dart';
 
 class SignEmailAccountUsecase

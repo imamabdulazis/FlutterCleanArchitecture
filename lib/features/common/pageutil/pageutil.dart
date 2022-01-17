@@ -1,6 +1,12 @@
 import 'dart:ui';
 
 class PageUtil {
+  factory PageUtil() {
+    return _instance!;
+  }
+
+  PageUtil._();
+
   static PageUtil? _instance;
   static const int defaultWidth = 414;
   static const int defaultHeight = 896;
@@ -18,12 +24,6 @@ class PageUtil {
   static double? _statusBarHeight;
   static double? _bottomBarHeight;
   static double? _textScaleFactor;
-
-  PageUtil._();
-
-  factory PageUtil() {
-    return _instance!;
-  }
 
   static void init(
       {num width = defaultWidth,

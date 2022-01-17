@@ -1,6 +1,7 @@
 import 'package:connectivity/connectivity.dart';
 
 ConnectivityResult? _connectivityResult;
+// ignore: avoid_classes_with_only_static_members
 class ConnectionHelper {
 
   static Future _connect() async {

@@ -6,7 +6,7 @@ import '../../../data/datasource/common/result.dart';
 import '../../../di/injection_container.dart';
 import '../../blocs/initial_bloc.dart';
 import '../login/login_screen.dart';
-import '../navigation/navigation.dart';
+import '../navigation/bottom_navigation.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String route = '/SplashScreen';
@@ -28,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
         if (event.data != null) {
           Get.offAndToNamed(LoginScreen.route);
         } else {
-          Get.off(NavScreen());
+          Get.off(BottomNavScreen());
         }
       }
     });

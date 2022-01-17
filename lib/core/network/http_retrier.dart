@@ -5,13 +5,13 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 
 class DioConnectivityRequestRetrier {
-  final Dio? dio;
-  final Connectivity? connectivity;
-
   DioConnectivityRequestRetrier({
     required this.dio,
     required this.connectivity,
   });
+
+  final Dio? dio;
+  final Connectivity? connectivity;
 
   Future<Response> scheduleRequestRetry(RequestOptions requestOptions) async {
     late StreamSubscription streamSubscription;
@@ -36,16 +36,17 @@ class DioConnectivityRequestRetrier {
 }
 
 class RetryOnConnectionChangeInterceptor extends Interceptor {
-  final DioConnectivityRequestRetrier? requestRetrier;
-
   RetryOnConnectionChangeInterceptor({
     required this.requestRetrier,
   });
 
+  final DioConnectivityRequestRetrier? requestRetrier;
+
   @override
   Future onError(
       // ignore: avoid_renaming_method_parameters
-      DioError err, ErrorInterceptorHandler errorInterceptorHandler) async {
+      DioError err,
+      ErrorInterceptorHandler errorInterceptorHandler) async {
     if (_shouldRetry(err)) {
       try {
         return requestRetrier!.scheduleRequestRetry(err.requestOptions);

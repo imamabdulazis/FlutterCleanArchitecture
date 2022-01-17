@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
+import '../../../domain/entities/response/user_model_entity.dart';
 import 'package:flutter/cupertino.dart';
 
 class UserModel extends UserModelEntity {

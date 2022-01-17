@@ -1,8 +1,8 @@
 import 'dart:io';
 
+import 'package:device_info/device_info.dart';
 import 'package:get/get.dart';
 import 'package:sentry/sentry.dart';
-import 'package:device_info/device_info.dart';
 
 import '../env/config.dart';
 

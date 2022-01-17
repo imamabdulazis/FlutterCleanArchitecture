@@ -1,8 +1,8 @@
-import 'package:clean_architect/core/network/http_client.dart';
-import 'package:clean_architect/features/data/datasource/binding/binding_datasource.dart';
-import 'package:clean_architect/features/data/models/request/sign_body.dart';
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
-import 'package:clean_architect/features/domain/entities/response/user_model_entity.dart';
+import '../../../../../core/network/http_client.dart';
+import '../../../../domain/entities/request/sign_entity.dart';
+import '../../../../domain/entities/response/user_model_entity.dart';
+import '../../../models/request/sign_body.dart';
+import '../binding_datasource.dart';
 
 class BindingRemote implements BindingDataSource {
   final HttpClient client;

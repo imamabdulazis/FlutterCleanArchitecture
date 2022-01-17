@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/data/models/response/user_model.dart';
+import 'user_model.dart';
 import 'package:flutter/cupertino.dart';
 
 class StoryModel {

@@ -1,6 +1,7 @@
-import 'package:clean_architect/features/data/models/response/user_model.dart';
-import 'package:clean_architect/features/presentation/screens/home/local_widget/profile_avatar.dart';
 import 'package:flutter/material.dart';
+
+import '../../../../data/models/response/user_model.dart';
+import 'profile_avatar.dart';
 
 class PostWidget extends StatelessWidget {
   final UserModel currentUser;

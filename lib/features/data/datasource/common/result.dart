@@ -1,4 +1,4 @@
-import 'package:clean_architect/core/error/failure.dart';
+import '../../../../core/error/failure.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/cupertino.dart';
 

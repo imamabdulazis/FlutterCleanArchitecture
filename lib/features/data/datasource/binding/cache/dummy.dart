@@ -1,5 +1,5 @@
-import 'package:clean_architect/features/data/models/response/story_model.dart';
-import 'package:clean_architect/features/data/models/response/user_model.dart';
+import '../../../models/response/story_model.dart';
+import '../../../models/response/user_model.dart';
 
 final UserModel currentUser = UserModel(
   name: 'Marcus Ng',

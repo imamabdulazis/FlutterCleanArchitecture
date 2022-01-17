@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/presentation/components/utility/palette.dart';
+import '../utility/palette.dart';
 import 'package:flutter/material.dart';
 
 class CustomTabBar extends StatelessWidget {

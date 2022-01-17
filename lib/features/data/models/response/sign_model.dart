@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/domain/entities/request/sign_entity.dart';
+import '../../../domain/entities/request/sign_entity.dart';
 import 'package:flutter/foundation.dart';
 
 class SignEmailModel extends SignModelEntity {

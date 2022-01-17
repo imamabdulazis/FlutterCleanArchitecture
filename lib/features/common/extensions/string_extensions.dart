@@ -1,5 +1,6 @@
-import 'package:clean_architect/features/common/localization/localization.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../localization/localization.dart';
 
 ///extension for less translation string with localization
 extension StringExtension on String {

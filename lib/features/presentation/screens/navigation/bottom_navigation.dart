@@ -1,15 +1,15 @@
-import 'package:clean_architect/features/presentation/components/widget/custom_tabbar.dart';
-import 'package:clean_architect/features/presentation/screens/account/account_screen.dart';
-import 'package:clean_architect/features/presentation/screens/home/home_screen.dart';
+import '../../components/widget/custom_tabbar.dart';
+import '../account/account_screen.dart';
+import '../home/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class NavScreen extends StatefulWidget {
+class BottomNavScreen extends StatefulWidget {
   @override
-  _NavScreenState createState() => _NavScreenState();
+  _BottomNavScreenState createState() => _BottomNavScreenState();
 }
 
-class _NavScreenState extends State<NavScreen> {
+class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     AccountScreen(),
