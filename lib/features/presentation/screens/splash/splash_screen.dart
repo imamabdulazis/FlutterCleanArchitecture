@@ -53,15 +53,21 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: Get.height / 5,
               ),
             ),
-            const Align(
+            Align(
               alignment: Alignment.bottomCenter,
-              child: Text(
-                'Facebook',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
-                  color: Colors.grey,
-                ),
+              child: Stack(
+                children: [
+                  Positioned.fill(
+                    child:
+                        Text('From', style: Theme.of(context).textTheme.button),
+                  ),
+                  Positioned.fill(
+                    child: Image.asset(
+                      'assets/img/meta.png',
+                      width: 50,
+                    ),
+                  )
+                ],
               ),
             ),
           ],
