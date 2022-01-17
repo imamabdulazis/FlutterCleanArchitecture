@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../di/injection_container.dart';
 import '../../components/utility/palette.dart';
 import '../../components/widget/button_contain.dart';
 import '../home/home_screen.dart';
