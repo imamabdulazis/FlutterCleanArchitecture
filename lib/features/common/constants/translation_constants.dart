@@ -2,6 +2,7 @@ class R {
   R._();
 
   /// [A]
+  static const appName = "Facebook";
 
   /// [B]
 
@@ -12,7 +13,6 @@ class R {
   /// [E]
 
   /// [F]
-  static const facebook = 'facebook';
 
   /// [G]
 

@@ -110,11 +110,12 @@ class MyApp extends StatelessWidget {
     final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
     return GetMaterialApp(
-      title: R.facebook.t(context)!,
+      // title: R.appName.t(context)!,
+      title: "Facebook",
       debugShowCheckedModeBanner: true,
       navigatorObservers: <NavigatorObserver>[routeObserver],
       theme: CreateTheme.lightTheme,
-      initialRoute: LoginScreen.route,
+      initialRoute: HomeScreen.route,
       getPages: <GetPage>[
         GetPage(name: SplashScreen.route, page: () => SplashScreen()),
         GetPage(name: LoginScreen.route, page: () => LoginScreen()),
