@@ -1,5 +1,9 @@
 <!-- This project created by imam abdul azis link : https://imamabdulazis.github.io/portofolio -->
 
+
+<h3>Preview Application</h3>
+
+
 <h1> Clean Architecture Flutter Project</h1>
 
 
@@ -520,66 +524,6 @@ Internationalization is the design and development of a product, application or 
 In this part we must handling component string and prepare if our project 
 is using multiple language (in this case usin US and ID)
 </p>
-
-```dart
-//NOTE : base translation class
-abstract class Translation {
-  String get msgEmailInUse;
-  String get msgInvalidCredentials;
-  String get msgInvalidField;
-  String get msgRequiredField;
-  String get msgUnexpectedError;
-
-  String get addAccount;
-  String get confirmPassword;
-  String get email;
-  String get enter;
-  String get login;
-  String get name;
-  String get password;
-  String get reload;
-  String get wait;
-}
-
-//NOTE : implement to language class
-
-class ID implements Translation {
-  String get msgEmailInUse => 'Email sudah digunakan';
-  String get msgInvalidCredentials => 'Username atau password salah.';
-  String get msgInvalidField => 'Bidang tidak valid';
-  String get msgRequiredField => 'Kolom yang harus diisi';
-  String get msgUnexpectedError => 'Ada yang salah. Silahkan coba lagi nanti.';
-
-  String get addAccount => 'Buat sebuah akun';
-  String get confirmPassword => 'Konfirmasi sandi';
-  String get email => 'Email';
-  String get enter => 'Gabung';
-  String get login => 'Login';
-  String get name => 'Nama';
-  String get password => 'Kata sandi';
-  String get reload => 'Muat ulang';
-  String get wait => 'Tunggu...';
-}
-
-
-class R {
-  static Translation string = ID();
-
-  static void load(Locale locale) {
-    switch (locale.toString()) {
-      default:
-        string = ID();
-        break;
-    }
-  }
-}
-
-example calling :
-    R.string.msgEmailInUse 
-output :
-    Email sudah digunakan
-
-```
 
 
 
