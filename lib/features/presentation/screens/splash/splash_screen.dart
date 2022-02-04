@@ -53,15 +53,14 @@ class _SplashScreenState extends State<SplashScreen> {
                 height: Get.height / 5,
               ),
             ),
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: Stack(
+            Positioned(
+              bottom: 10,
+              left: 0,
+              right: 0,
+              child: Column(
                 children: [
-                  Positioned.fill(
-                    child:
-                        Text('From', style: Theme.of(context).textTheme.button),
-                  ),
-                  Positioned.fill(
+                  Text('From', style: Theme.of(context).textTheme.button),
+                  SizedBox(
                     child: Image.asset(
                       'assets/img/meta.png',
                       width: 50,
