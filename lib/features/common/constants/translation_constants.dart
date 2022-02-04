@@ -26,7 +26,6 @@ class R {
 
   /// [L]
   static const loading = 'loading';
-  static const laoding = 'laoding';
 
   /// [M]
 

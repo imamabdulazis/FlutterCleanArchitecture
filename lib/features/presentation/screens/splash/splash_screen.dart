@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/datasource/common/result.dart';
-import '../../../di/injection_container.dart';
+import '../../../di/InjectionContainer.dart';
 import '../../blocs/initial_bloc.dart';
 import '../login/login_screen.dart';
 import '../navigation/bottom_navigation.dart';

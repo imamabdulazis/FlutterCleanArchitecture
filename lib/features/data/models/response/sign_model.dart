@@ -1,8 +1,9 @@
-import '../../../domain/entities/request/sign_entity.dart';
+import 'package:clean_architect/features/domain/entities/login/LoginModalEntity.dart';
+
 import 'package:flutter/foundation.dart';
 
-class SignEmailModel extends SignModelEntity {
-  SignEmailModel({
+class SignEmailModel extends LoginlModelEntity {
+  const SignEmailModel({
     @required String? accessToken,
     @required String? refreshToken,
   }) : super(

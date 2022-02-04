@@ -1,5 +1,6 @@
-import '../../../domain/entities/request/sign_entity.dart';
-import '../../../domain/entities/response/user_model_entity.dart';
+import 'package:clean_architect/features/domain/entities/login/LoginModalEntity.dart';
+
+import '../../../domain/entities/user/UserModelEntity.dart';
 import '../../models/request/sign_body.dart';
 
 ///declare [resource] datasource binding to [remote] and [local]
@@ -8,9 +9,8 @@ abstract class BindingDataSource {
   Stream<bool> isAlreadyBinding();
 
   ///do sign in user
-  Stream<SignModelEntity> signWithEmail(SignEmailBody signEmailBody);
+  Stream<LoginlModelEntity> signWithEmail(SignEmailBody signEmailBody);
 
   ///get [account] user
   Stream<UserModelEntity> getAccount(int userId);
-
 }

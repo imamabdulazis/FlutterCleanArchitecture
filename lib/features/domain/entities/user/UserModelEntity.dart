@@ -1,14 +1,13 @@
-import 'package:flutter/foundation.dart';
 import 'package:equatable/equatable.dart';
 
 class UserModelEntity extends Equatable {
-  final String? name;
-  final String? imageUrl;
-
-  UserModelEntity({
+  const UserModelEntity({
     this.name,
     this.imageUrl,
   });
+
+  final String? name;
+  final String? imageUrl;
 
   @override
   List<Object> get props => [imageUrl!, name!];

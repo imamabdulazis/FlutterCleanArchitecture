@@ -2,7 +2,7 @@ import 'package:rxdart/rxdart.dart';
 
 import '../../../core/usecases/usecase.dart';
 import '../../data/datasource/common/result.dart';
-import '../../domain/usecases/binding_usecase.dart';
+import '../../domain/usecases/CheckBindingUseCase.dart';
 
 class SplashBloc {
   SplashBloc(this._checkBindStatusUsecase);

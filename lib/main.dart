@@ -9,7 +9,7 @@ import 'package:get/get.dart';
 
 import 'core/env/config.dart';
 import 'core/env/flavor.dart';
-import 'features/di/injection_container.dart' as di;
+import 'features/di/InjectionContainer.dart' as di;
 import 'features/presentation/components/utility/app_theme.dart';
 import 'features/presentation/components/utility/observer.dart';
 import 'features/presentation/screens/home/home_screen.dart';

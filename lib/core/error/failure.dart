@@ -7,9 +7,9 @@ abstract class Failure extends Equatable {
 }
 
 class ServerFailure extends Failure {
-  final dynamic error;
-
   ServerFailure({@required this.error});
+
+  final dynamic error;
 
   @override
   List<Object> get props => [error];

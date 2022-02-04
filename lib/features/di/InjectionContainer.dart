@@ -1,3 +1,4 @@
+import 'package:clean_architect/features/domain/usecases/LoginUseCase.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../core/env/config.dart';
@@ -7,9 +8,8 @@ import '../data/datasource/binding/local/binding_local.dart';
 import '../data/datasource/binding/remote/binding_remote.dart';
 import '../data/datasource/datasource_factory.dart';
 import '../data/repositories/user_repository_impl.dart';
-import '../domain/repositories/user_repository.dart';
-import '../domain/usecases/binding_usecase.dart';
-import '../domain/usecases/sign_email_usecase.dart';
+import '../domain/repositories/UserRepository.dart';
+import '../domain/usecases/CheckBindingUseCase.dart';
 import '../presentation/blocs/initial_bloc.dart';
 import '../presentation/blocs/sign_bloc.dart';
 
@@ -45,12 +45,13 @@ Future<void> init() async {
 
   ///[Usecases]
   sl.registerFactory(() => CheckBindStatusUsecase(sl()));
-  sl.registerFactory(() => SignEmailAccountUsecase(sl()));
+  sl.registerFactory(() => LoginUseCase(sl()));
 
   ///[Repository]
   sl.registerFactory<BindingDataSourceFactory>(
-      () => BindingDataSourceFactory(bindingLocal: sl(), bindingRemote: sl()));
+    () => BindingDataSourceFactory(bindingLocal: sl(), bindingRemote: sl()),
+  );
   sl.registerFactory<UserRepository>(
-      () => UserRepositoryImpl(bindingDataSourceFactory: sl()));
-
+    () => UserRepositoryImpl(bindingDataSourceFactory: sl()),
+  );
 }

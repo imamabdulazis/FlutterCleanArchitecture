@@ -1,4 +1,4 @@
-import '../../domain/entities/app/language_entity.dart';
+import '../../domain/entities/language/LanguageEntity.dart';
 
 ///define language items for support localization(l10n)
 class Languages {
