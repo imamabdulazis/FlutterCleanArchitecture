@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/domain/usecases/LoginUseCase.dart';
+import '../domain/usecases/LoginUseCase.dart';
 import 'package:get_it/get_it.dart';
 
 import '../../core/env/config.dart';

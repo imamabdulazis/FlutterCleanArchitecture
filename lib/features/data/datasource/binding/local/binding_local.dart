@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/domain/entities/login/LoginModalEntity.dart';
+import '../../../../domain/entities/login/LoginModalEntity.dart';
 
 import '../../../../common/constants/prefs_constants.dart';
 

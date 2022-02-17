@@ -1,21 +1,15 @@
 import 'dart:async';
 
-import 'features/common/constants/translation_constants.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
 
+import 'app.dart';
 import 'core/env/config.dart';
 import 'core/env/flavor.dart';
 import 'features/di/InjectionContainer.dart' as di;
-import 'features/presentation/components/utility/app_theme.dart';
 import 'features/presentation/components/utility/observer.dart';
-import 'features/presentation/screens/home/home_screen.dart';
-import 'features/presentation/screens/login/login_screen.dart';
-import 'features/presentation/screens/splash/splash_screen.dart';
-import 'features/common/extensions/string_extensions.dart';
 
 ///[get debug mode]
 bool get isInDebugMode {
@@ -39,19 +33,19 @@ Future<void> main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await getFlavorSetting();
     await di.init();
-    // await disableLendscapeMode();
+    // await disableLendscapeMode(); /// [deprecated]
     disableErrorWidget();
 
     SystemChrome.setPreferredOrientations([]).then((_) {
       BlocOverrides.runZoned(
         () => {
-          runApp(MyApp()),
+          runApp(const MyApp()),
         },
         blocObserver: MyBlocObserver(),
       );
     });
 
-    ///[console] flavor running
+    ///[console] flavor running hidden when release mode
     if (!kReleaseMode) {
       final settings = Config.getInstance();
       print('🚀 APP FLAVOR NAME      : ${settings.flavorName}');
@@ -100,27 +94,5 @@ Future<FlavorSettings> getFlavorSetting() async {
     return FlavorSettings.production();
   } else {
     throw Exception('Oopss... Flavor name missing');
-  }
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-    final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
-
-    return GetMaterialApp(
-      // title: R.appName.t(context)!,
-      title: "Facebook",
-      debugShowCheckedModeBanner: true,
-      navigatorObservers: <NavigatorObserver>[routeObserver],
-      theme: CreateTheme.lightTheme,
-      initialRoute: SplashScreen.route,
-      getPages: <GetPage>[
-        GetPage(name: SplashScreen.route, page: () => SplashScreen()),
-        GetPage(name: LoginScreen.route, page: () => LoginScreen()),
-        GetPage(name: HomeScreen.route, page: () => HomeScreen()),
-      ],
-    );
   }
 }

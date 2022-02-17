@@ -2,7 +2,7 @@ class R {
   R._();
 
   /// [A]
-  static const appName = "Facebook";
+  static const appName = "FacebookFlutter";
 
   /// [B]
 

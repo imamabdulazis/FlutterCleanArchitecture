@@ -1,4 +1,4 @@
-import 'package:clean_architect/features/domain/entities/login/LoginModalEntity.dart';
+import '../entities/login/LoginModalEntity.dart';
 
 import '../../../core/error/failure.dart';
 import '../../../core/usecases/usecase.dart';

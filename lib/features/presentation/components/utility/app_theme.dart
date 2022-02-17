@@ -6,9 +6,8 @@ import 'palette.dart';
 class CreateTheme {
   CreateTheme._();
 
-  static const appbarTHeme = AppBarTheme(
+  static const appBarTHeme = AppBarTheme(
     elevation: 0.0,
-    brightness: Brightness.dark,
   );
 
   // static const textTheme = TextTheme(
@@ -41,6 +40,7 @@ class CreateTheme {
     caption: MyTypography.smallRegularText,
     overline: MyTypography.xSmallRegularText,
   );
+
   static final inputDecorationTheme = InputDecorationTheme(
     // fillColor: Colors.white,
     filled: true,
@@ -97,12 +97,14 @@ class CreateTheme {
     primaryColorDark: Palette.primaryColorDark,
     primaryColorLight: Palette.primaryColorLight,
     secondaryHeaderColor: Palette.secondaryColorDark,
+    // colorScheme: const ColorScheme.light(
+    //     primary: Colors.black, brightness: Brightness.light),
     disabledColor: Colors.grey,
     dividerColor: Palette.dividerColor.withOpacity(0.5),
     accentColor: Palette.primaryColor,
     backgroundColor: Colors.white,
     hintColor: Colors.grey,
-    appBarTheme: appbarTHeme,
+    appBarTheme: appBarTHeme,
     // primaryTextTheme: primaryTextTheme,
     textTheme: textTheme,
     inputDecorationTheme: inputDecorationTheme,
@@ -135,17 +137,19 @@ class CreateTheme {
     primaryColorDark: Palette.primaryColorDark,
     primaryColorLight: Palette.primaryColorLight,
     secondaryHeaderColor: Palette.secondaryColorDark,
+    // colorScheme: const ColorScheme.light(
+    //     primary: Colors.white, brightness: Brightness.light),
     disabledColor: Palette.disabledColor,
     dividerColor: Palette.dividerColor.withOpacity(0.5),
     accentColor: Palette.primaryColor,
     backgroundColor: Colors.white,
     hintColor: Colors.grey,
-    appBarTheme: appbarTHeme.copyWith(
+    appBarTheme: appBarTHeme.copyWith(
         brightness: Brightness.dark, color: Colors.grey[900]),
     textTheme: textTheme,
     inputDecorationTheme:
         inputDecorationTheme.copyWith(fillColor: Colors.grey[800]),
-    scaffoldBackgroundColor: Palette.primaryBackgroundDarkTheme,
+    scaffoldBackgroundColor: CupertinoColors.darkBackgroundGray,
     iconTheme: const IconThemeData(
       color: Colors.white,
     ),
