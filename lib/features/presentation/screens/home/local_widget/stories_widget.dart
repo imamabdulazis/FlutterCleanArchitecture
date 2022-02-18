@@ -68,9 +68,7 @@ class _StoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12)),
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
-          onTap: () {
-            print('IMAM');
-          },
+          onTap: () {},
           child: Stack(
             children: <Widget>[
               ClipRRect(

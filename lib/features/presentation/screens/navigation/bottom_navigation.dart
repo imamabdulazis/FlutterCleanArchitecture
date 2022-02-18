@@ -1,3 +1,6 @@
+import 'package:clean_architect/features/presentation/screens/menu/menu_screen.dart';
+import 'package:flutter/cupertino.dart';
+
 import '../../components/widget/custom_tabbar.dart';
 import '../account/account_screen.dart';
 import '../home/home_screen.dart';
@@ -5,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 class BottomNavScreen extends StatefulWidget {
+  static const route = '/BottomNavScreen';
   @override
   _BottomNavScreenState createState() => _BottomNavScreenState();
 }
@@ -12,18 +16,16 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
+    const Scaffold(),
     AccountScreen(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
-    Scaffold(),
+    const Scaffold(),
+    const MenuScreen()
   ];
 
   final List<IconData> _icons = [
     MdiIcons.homeOutline,
-    Icons.ondemand_video,
     MdiIcons.storefront,
-    MdiIcons.accountGroupOutline,
+    CupertinoIcons.person_circle,
     MdiIcons.bellOutline,
     MdiIcons.menu
   ];
@@ -33,6 +35,7 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: 0,
       length: _icons.length,
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -43,9 +46,12 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
         bottomNavigationBar: Padding(
           padding: const EdgeInsets.only(bottom: 12.0),
           child: CustomTabBar(
-              icons: _icons,
-              selectedIndex: _selectedIndex,
-              onTap: (index) => setState(() => _selectedIndex = index)),
+            icons: _icons,
+            selectedIndex: _selectedIndex,
+            onTap: (index) => setState(
+              () => _selectedIndex = index,
+            ),
+          ),
         ),
       ),
     );

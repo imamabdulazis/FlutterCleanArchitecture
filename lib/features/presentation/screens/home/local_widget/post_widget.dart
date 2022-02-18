@@ -51,7 +51,9 @@ class PostWidget extends StatelessWidget {
                         Icons.videocam,
                         color: Colors.red,
                       ),
-                      label: Text('Live')),
+                      label: Text('Live',
+                          style: Theme.of(context).textTheme.button!.copyWith(
+                              color: Theme.of(context).colorScheme.primary))),
                   const VerticalDivider(width: 8.0),
                   FlatButton.icon(
                       onPressed: () {},
@@ -59,7 +61,9 @@ class PostWidget extends StatelessWidget {
                         Icons.photo_library,
                         color: Colors.green,
                       ),
-                      label: const Text('Photo')),
+                      label: Text('Photo',
+                          style: Theme.of(context).textTheme.button!.copyWith(
+                              color: Theme.of(context).colorScheme.primary))),
                   const VerticalDivider(width: 8.0),
                   FlatButton.icon(
                       onPressed: () {},
@@ -67,7 +71,9 @@ class PostWidget extends StatelessWidget {
                         Icons.video_call,
                         color: Colors.purpleAccent,
                       ),
-                      label: Text('Room')),
+                      label: Text('Room',
+                          style: Theme.of(context).textTheme.button!.copyWith(
+                              color: Theme.of(context).colorScheme.primary))),
                 ],
               ),
             )

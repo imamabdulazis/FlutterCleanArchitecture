@@ -1,3 +1,0 @@
-class HiveConstants {
-  HiveConstants._();
-}
