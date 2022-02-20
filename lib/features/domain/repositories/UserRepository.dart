@@ -8,7 +8,7 @@ import '../entities/user/UserModelEntity.dart';
 abstract class UserRepository {
   Stream<Either<Failure, bool>> checkBindStatus();
 
-  Stream<Either<Failure, LoginlModelEntity>> signWithEmail(SignEmailBody body);
+  Stream<Either<Failure, LoginModelEntity>> signWithEmail(SignEmailBody body);
 
   Stream<Either<Failure, UserModelEntity>> getAccount(int userId);
 }

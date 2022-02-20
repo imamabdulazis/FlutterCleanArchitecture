@@ -7,7 +7,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ChangeThemeCubit extends Cubit<ThemeMode> {
   ChangeThemeCubit() : super(ThemeMode.system);
 
-  final SharedPrefs? themeMode = sl<SharedPrefs>();
+  final SharedPref? themeMode = sl<SharedPref>();
 
   void changeTheme() {
     bool? isDarkMode = themeMode!.getBool(Constants.keyTheme);

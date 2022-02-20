@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 
 import '../../../data/datasource/common/result.dart';
 import '../../../di/InjectionContainer.dart';
-import '../../blocs/initial_bloc.dart';
+import '../../blocs/InitialBloc.dart';
 import '../login/login_screen.dart';
 import '../navigation/bottom_navigation.dart';
 

@@ -17,6 +17,7 @@ class R {
   /// [G]
 
   /// [H]
+  static const home = 'home';
 
   /// [I]
 
@@ -26,14 +27,19 @@ class R {
 
   /// [L]
   static const loading = 'loading';
+  static const language = 'language';
 
   /// [M]
+  static const marketPlace = 'marketPlace';
+  static const menu = 'menu';
 
   /// [N]
+  static const notifications = 'notifications';
 
   /// [O
 
   /// [P]
+  static const profile = 'profile';
 
   /// [Q]
 

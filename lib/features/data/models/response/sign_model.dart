@@ -2,7 +2,7 @@ import '../../../domain/entities/login/LoginModalEntity.dart';
 
 import 'package:flutter/foundation.dart';
 
-class SignEmailModel extends LoginlModelEntity {
+class SignEmailModel extends LoginModelEntity {
   const SignEmailModel({
     @required String? accessToken,
     @required String? refreshToken,

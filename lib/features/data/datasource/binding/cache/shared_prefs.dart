@@ -1,13 +1,13 @@
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SharedPrefs {
-  static SharedPrefs? _instance;
+class SharedPref {
+  static SharedPref? _instance;
   static SharedPreferences? _prefs;
 
   /// function [Initial] function when inject shared preference
-  static Future<SharedPrefs> getInstance() async {
+  static Future<SharedPref> getInstance() async {
     _prefs ??= await SharedPreferences.getInstance();
-    return _instance ??= SharedPrefs();
+    return _instance ??= SharedPref();
   }
 
   Future<bool> putBool(String key, bool value) => _prefs!.setBool(key, value);

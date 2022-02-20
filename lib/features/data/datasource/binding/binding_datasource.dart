@@ -9,8 +9,12 @@ abstract class BindingDataSource {
   Stream<bool> isAlreadyBinding();
 
   ///do sign in user
-  Stream<LoginlModelEntity> signWithEmail(SignEmailBody signEmailBody);
+  Stream<LoginModelEntity> signWithEmail(SignEmailBody signEmailBody);
 
   ///get [account] user
   Stream<UserModelEntity> getAccount(int userId);
+
+  //language or localization
+  Stream<String?> getPreferredLanguage();
+  Stream<void> updatePreferredLanguage(String localeCode);
 }
