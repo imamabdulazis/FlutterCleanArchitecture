@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 
-class LoginlModelEntity extends Equatable {
-  const LoginlModelEntity({
+class LoginModelEntity extends Equatable {
+  const LoginModelEntity({
     this.accessToken,
     this.refreshToken,
   });

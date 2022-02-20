@@ -1,6 +1,12 @@
 {
   "appName": "Facebook",
+  "home": "Home",
+  "language": "Language",
   "loading": "Loading",
   "login": "Login",
+  "marketPlace": "Market",
+  "menu": "Menu",
+  "notifications": "Notifikasi",
+  "profile": "Profil",
   "signup": "Signup"
 }

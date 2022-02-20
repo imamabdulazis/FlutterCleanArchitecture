@@ -10,10 +10,10 @@ import '../env/config.dart';
 import 'http_retrier.dart';
 
 class HttpClient {
-  HttpClient({required this.config, required this.prefs});
+  HttpClient({required this.config, required this.pref});
   
   late Config config;
-  late SharedPrefs prefs;
+  late SharedPref pref;
 
   Dio get dio => _getDio();
 
@@ -23,7 +23,7 @@ class HttpClient {
       connectTimeout: 20000,
       receiveTimeout: 30000,
       receiveDataWhenStatusError: true,
-      headers: {'isToken': prefs.isKeyExists(Constants.keyAccessToken)},
+      headers: {'isToken': pref.isKeyExists(Constants.keyAccessToken)},
     );
     final dynamic dio = Dio(options);
     dio.interceptors.addAll(<Interceptor>[_loggingInterceptor()]);
@@ -41,7 +41,7 @@ class HttpClient {
 
   Interceptor _loggingInterceptor() {
     return InterceptorsWrapper(onRequest: (options, handler) {
-      final storageToken = prefs.getString(Constants.keyAccessToken);
+      final storageToken = pref.getString(Constants.keyAccessToken);
 
       print("--> ${options.method} ${"" + (options.baseUrl) + (options.path)}");
       print('Headers:');

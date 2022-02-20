@@ -1,8 +1,8 @@
-import '../../domain/entities/login/LoginModalEntity.dart';
 import 'package:dartz/dartz.dart';
 
 import '../../../core/error/exception.dart';
 import '../../../core/error/failure.dart';
+import '../../domain/entities/login/LoginModalEntity.dart';
 import '../../domain/entities/user/UserModelEntity.dart';
 import '../../domain/repositories/UserRepository.dart';
 import '../datasource/common/base_datasource_factory.dart';
@@ -25,7 +25,7 @@ class UserRepositoryImpl implements UserRepository {
   }
 
   @override
-  Stream<Either<Failure, LoginlModelEntity>> signWithEmail(SignEmailBody body) {
+  Stream<Either<Failure, LoginModelEntity>> signWithEmail(SignEmailBody body) {
     return _bindingDataSourceFactory!
         .createData(DataSourceState.network)!
         .signWithEmail(body)

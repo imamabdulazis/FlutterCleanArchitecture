@@ -1,15 +1,19 @@
-import '../utility/palette.dart';
+import 'package:clean_architect/features/common/extensions/string_extensions.dart';
+import 'package:clean_architect/features/domain/entities/language/BottomNavEntity.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import '../utility/palette.dart';
 
 class CustomTabBar extends StatefulWidget {
   const CustomTabBar({
     Key? key,
-    @required this.icons,
+    @required this.customNav,
     @required this.selectedIndex,
     @required this.onTap,
   }) : super(key: key);
 
-  final List<IconData>? icons;
+  final List<BottomNavEntity>? customNav;
   final int? selectedIndex;
   final Function(int index)? onTap;
 
@@ -17,28 +21,14 @@ class CustomTabBar extends StatefulWidget {
   State<CustomTabBar> createState() => _CustomTabBarState();
 }
 
-class _CustomTabBarState extends State<CustomTabBar>
-    with SingleTickerProviderStateMixin {
-  late final TabController _tabController;
-
-  @override
-  void initState() {
-    _tabController =
-        new TabController(vsync: this, length: widget.icons!.length);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _tabController.dispose();
-    super.dispose();
-  }
-
+class _CustomTabBarState extends State<CustomTabBar> {
   @override
   Widget build(BuildContext context) {
     return TabBar(
-      controller: _tabController,
       indicatorPadding: EdgeInsets.zero,
+      labelColor: Palette.primaryColor,
+      labelStyle: Theme.of(context).textTheme.caption!.copyWith(fontSize: 10),
+      unselectedLabelColor: Colors.grey,
       indicator: const BoxDecoration(
         border: Border(
           top: BorderSide(
@@ -47,17 +37,20 @@ class _CustomTabBarState extends State<CustomTabBar>
           ),
         ),
       ),
-      tabs: widget.icons!
+      tabs: widget.customNav!
           .asMap()
           .map((i, e) => MapEntry(
               i,
               Tab(
+                text: e.title.translate(context)!,
                 icon: Icon(
-                  e,
+                  i == widget.selectedIndex ? e.activeIcons : e.defaultIcons,
                   color: i == widget.selectedIndex
                       ? Palette.facebookBlue
-                      : Colors.black45,
-                  size: 30.0,
+                      : Get.isDarkMode
+                          ? Colors.grey
+                          : Colors.black45,
+                  size: 25.0,
                 ),
               )))
           .values

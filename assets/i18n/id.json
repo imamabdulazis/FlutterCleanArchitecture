@@ -1,6 +1,12 @@
 {
   "appName": "Facebook",
+  "home": "Home",
+  "language": "Bahasa",
   "loading": "Loading",
-  "login": "Masuk",
-  "signup": "Daftar"
+  "login": "Login",
+  "marketPlace": "Market",
+  "menu": "Menu",
+  "notifications": "Notifications",
+  "profile": "Profile",
+  "signup": "Signup"
 }
