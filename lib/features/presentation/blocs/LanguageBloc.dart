@@ -8,6 +8,7 @@ import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 abstract class LanguageState extends Equatable {
   const LanguageState();
@@ -24,8 +25,6 @@ class LanguageLoaded extends LanguageState {
   @override
   List<Object> get props => [locale.languageCode];
 }
-
-class LanguageChange extends LanguageState {}
 
 class LanguageError extends LanguageState {
   const LanguageError(this.message);
@@ -66,14 +65,19 @@ class LanguageBloc extends Bloc<LanguageEvent, LanguageState> {
           add(LoadPreferredLanguageEvent());
         });
       } else if (event is LoadPreferredLanguageEvent) {
-        getPreferredLanguageUseCase.execute(NoParams()).listen((eventRes) {
-          emit(eventRes.fold(
-            (_) => const LanguageError(
-              'Ooops, something wring with translation',
-            ),
-            (values) => LanguageLoaded(Locale(values)),
-          ));
-        });
+        return emit.forEach(
+          getPreferredLanguageUseCase.execute(NoParams()),
+          onData: (Either<Failure, String> eventRes) {
+            return eventRes.fold(
+              (_) =>
+                  const LanguageError('Ops, something wring with translation'),
+              (values) {
+                Get.updateLocale(Locale(values));
+                return LanguageLoaded(Locale(values));
+              },
+            );
+          },
+        );
       }
     });
   }

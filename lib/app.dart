@@ -29,13 +29,25 @@ class _MyAppState extends State<MyApp> {
   final routeObserver = Get.put<RouteObserver>(RouteObserver<PageRoute>());
 
   @override
+  void initState() {
+    _languageBloc.add(LoadPreferredLanguageEvent());
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _languageBloc.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     final bool? isDarkMode = pref.getBool(Constants.keyTheme);
     final bool isLogged = pref.isKeyExists(Constants.keyUserLoggedIn);
 
-    return BlocProvider.value(
-        value: _languageBloc,
+    return BlocProvider(
+        create: (context) => _languageBloc,
         child: BlocBuilder<LanguageBloc, LanguageState>(
           builder: (context, state) {
             if (state is LanguageLoaded) {
@@ -69,6 +81,7 @@ class _MyAppState extends State<MyApp> {
                 ///END ROUTING
                 ///
                 /// LOCALIZATION
+                /// will reset if we don't save to local storage
                 locale: Get.locale,
                 supportedLocales: Languages.languages
                     .map(

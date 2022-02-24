@@ -34,8 +34,7 @@ class BindingLocal implements BindingDataSource {
 
   @override
   Stream<String?> getPreferredLanguage() async* {
-    yield pref!.getString(Constants.keyLanguage) ??
-        Languages.languages[0].code!;
+    yield pref!.getString(Constants.keyLanguage);
   }
 
   @override

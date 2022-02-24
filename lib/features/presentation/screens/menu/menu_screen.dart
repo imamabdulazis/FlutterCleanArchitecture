@@ -39,6 +39,17 @@ class _MenuScreenState extends State<MenuScreen> {
   }
 
   @override
+  void initState() {
+    late int index;
+    String? code = pref!.getString(Constants.keyLanguage);
+    if (code != null) {
+      index = Languages.languages.indexWhere((v) => v.code == code);
+    }
+    selectedLanguage.value = Languages.languages[code != null ? index : 0];
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (context) => languageBloc,
