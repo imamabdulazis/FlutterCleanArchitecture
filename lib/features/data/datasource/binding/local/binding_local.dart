@@ -2,12 +2,12 @@ import 'package:clean_architect/features/common/constants/language_constants.dar
 
 import '../../../../domain/entities/login/LoginModalEntity.dart';
 
-import '../../../../common/constants/prefs_constants.dart';
+import '../../../../common/constants/pref_constants.dart';
 
 import '../../../../domain/entities/user/UserModelEntity.dart';
 import '../../../models/request/sign_body.dart';
 import '../binding_datasource.dart';
-import '../cache/shared_prefs.dart';
+import '../cache/shared_pref.dart';
 
 ///don't forget add "async*" when using yield component
 ///because yield is component of Stream asynchronous
@@ -34,7 +34,9 @@ class BindingLocal implements BindingDataSource {
 
   @override
   Stream<String?> getPreferredLanguage() async* {
-    yield pref!.getString(Constants.keyLanguage);
+    yield pref!.getString(Constants.keyLanguage) ??
+        Languages.languages[0].code!;
+    ;
   }
 
   @override

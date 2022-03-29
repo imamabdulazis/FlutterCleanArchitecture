@@ -4,8 +4,8 @@ import 'package:connectivity/connectivity.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 
-import '../../features/common/constants/prefs_constants.dart';
-import '../../features/data/datasource/binding/cache/shared_prefs.dart';
+import '../../features/common/constants/pref_constants.dart';
+import '../../features/data/datasource/binding/cache/shared_pref.dart';
 import '../env/config.dart';
 import 'http_retrier.dart';
 

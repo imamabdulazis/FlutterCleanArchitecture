@@ -1,5 +1,5 @@
 import 'package:clean_architect/core/error/failure.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/shared_prefs.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/shared_pref.dart';
 import 'package:clean_architect/features/data/datasource/common/base_datasource_factory.dart';
 import 'package:clean_architect/features/data/datasource/datasource_factory.dart';
 import 'package:clean_architect/features/di/InjectionContainer.dart';
