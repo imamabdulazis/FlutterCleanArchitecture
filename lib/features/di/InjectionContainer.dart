@@ -7,7 +7,7 @@ import 'package:get_it/get_it.dart';
 
 import '../../core/env/config.dart';
 import '../../core/network/http_client.dart';
-import '../data/datasource/binding/cache/shared_prefs.dart';
+import '../data/datasource/binding/cache/shared_pref.dart';
 import '../data/datasource/binding/local/binding_local.dart';
 import '../data/datasource/binding/remote/binding_remote.dart';
 import '../data/datasource/datasource_factory.dart';

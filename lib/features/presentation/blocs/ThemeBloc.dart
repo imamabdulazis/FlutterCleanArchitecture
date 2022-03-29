@@ -1,5 +1,5 @@
-import '../../common/constants/prefs_constants.dart';
-import '../../data/datasource/binding/cache/shared_prefs.dart';
+import '../../common/constants/pref_constants.dart';
+import '../../data/datasource/binding/cache/shared_pref.dart';
 import '../../di/InjectionContainer.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

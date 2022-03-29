@@ -1,8 +1,8 @@
 import 'package:clean_architect/features/common/constants/language_constants.dart';
-import 'package:clean_architect/features/common/constants/prefs_constants.dart';
+import 'package:clean_architect/features/common/constants/pref_constants.dart';
 import 'package:clean_architect/features/common/constants/translation_constants.dart';
 import 'package:clean_architect/features/common/extensions/string_extensions.dart';
-import 'package:clean_architect/features/data/datasource/binding/cache/shared_prefs.dart';
+import 'package:clean_architect/features/data/datasource/binding/cache/shared_pref.dart';
 import 'package:clean_architect/features/di/InjectionContainer.dart';
 import 'package:clean_architect/features/domain/entities/language/LanguageEntity.dart';
 import 'package:clean_architect/features/presentation/blocs/LanguageBloc.dart';

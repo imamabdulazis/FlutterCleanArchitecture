@@ -3,17 +3,16 @@ import 'package:clean_architect/features/common/localization/localization.dart';
 import 'package:clean_architect/features/presentation/blocs/LanguageBloc.dart';
 import 'package:clean_architect/features/presentation/components/utility/app_theme.dart';
 import 'package:clean_architect/features/presentation/screens/navigation/bottom_navigation.dart';
+import 'package:clean_architect/routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:get/get.dart';
 
-import 'features/common/constants/prefs_constants.dart';
-import 'features/data/datasource/binding/cache/shared_prefs.dart';
+import 'features/common/constants/pref_constants.dart';
+import 'features/data/datasource/binding/cache/shared_pref.dart';
 import 'features/di/InjectionContainer.dart';
-import 'features/presentation/screens/login/login_screen.dart';
-import 'features/presentation/screens/splash/splash_screen.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -70,14 +69,7 @@ class _MyAppState extends State<MyApp> {
                 navigatorKey: _navigatorKey,
                 initialRoute:
                     isLogged ? BottomNavScreen.route : BottomNavScreen.route,
-                getPages: <GetPage>[
-                  GetPage(name: SplashScreen.route, page: () => SplashScreen()),
-                  GetPage(name: LoginScreen.route, page: () => LoginScreen()),
-                  GetPage(
-                      name: BottomNavScreen.route,
-                      page: () => BottomNavScreen()),
-                ],
-
+                getPages: Routes.page.map((page) => page).toList(),
                 ///END ROUTING
                 ///
                 /// LOCALIZATION
