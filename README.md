@@ -1,3 +1,7 @@
+## Repo Activity
+
+![Repo Activity](https://repobeats.axiom.co/api/embed/d154138385deadc2246b5b013ab030c4fc641093.svg "Repobeats analytics image")
+
 # Introduction
 
 This is the implementation of clean architecture by [Uncle Bob](https://blog.cleancoder.com/uncle-bob/2012/08/13/the-clean-architecture.html). We can implement this project to make applications with many modules and components. First, we must prepare some libraries for supporting our project like an injector, API consumes like [dio](https://pub.dev/packages/dio), and many other libraries we must install. In this case, I made a [Facebook](https://web.facebook.com/?\_rdc=1&\_rdr) clone with [rest API](https://www.redhat.com/en/topics/api/what-is-a-rest-api) and you can clone it anytime and feel free to wait for my update app to make sure the app works properly.
